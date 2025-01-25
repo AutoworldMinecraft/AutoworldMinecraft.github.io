@@ -1,437 +1,405 @@
-
-<!DOCTYPE html>
-<html lang = "ru">
-<head>
-    
-<!--
-    Сайт сделал Souseiseki_.
-    Он же dimius, он же @nuxtdev в Дискорде, он же mail@dimius.ru, он же github.com/intredford.
--->
-
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="ru-RU"><head>
+<title>ASTRUM - Приватный сервер Minecraft 1.21 | Ванильное выживание без гриферов</title>
+<meta charset="utf-8">
+<meta name="description" content="Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой.">
+<meta name="keywords" content="astrum, ast, аструм, аст, астрал, austral, ванильный сервер Minecraft, Майнкрафт, Minecraft, SPWorlds, Ванильный сервер, Приватный сервер">
+<meta property="og:title" content="ASTRUM - Приватный сервер">
+<meta property="og:description" content="Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!">
+<meta property="og:image" content="images/favicon.ico">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.astrums.pro">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ASTRUM">
+<meta name="theme-color" content="#9e2dcf">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-<link rel="preload" href = "/css/fonts/golos-text/GolosText-Variable.woff2" crossorigin='anonymous' as='font' type='font/woff2'>
-<link rel="preload" href = "/css/fonts/golos-ui/GolosUI-Variable.woff2" crossorigin='anonymous' as='font' type='font/woff2'>
+<meta name="twitter:card" content="ASTRUM - Приватный сервер">
+<meta name="twitter:site" content="@Astrum">
+<meta name="twitter:title" content="ASTRUM - Информация">
+<meta name="twitter:description" content="Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!">
+<meta name="twitter:image" content="/favicon.ico">
+<meta name="twitter:image:alt" content="astrum">
 
-<link rel="stylesheet" href="/css/fonts/golos-text.css">
-<link rel="stylesheet" href="/css/fonts/golos-ui.css">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/footer.css">
-	<title>CMCraft — Ванильный сервер в Майнкрафт 1.21</title>
-	<meta name = "description" content = "Майнкрафт-сервер с выживанием без доната, без грифа, без приватов и прочей чуши. У нас бесплатная проходка, высокий онлайн и большое сообщество.">
+<link rel="stylesheet" type="text/css" href="css/anim.css">
+<link rel="stylesheet" type="text/css" href="css/dark.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/debug.css">
+<link rel="stylesheet" type="text/css" href="css/scale.css">
+<script data-cfasync="false" src="js/jquery.js"></script>
+<script data-cfasync="false" src="js/dark.js"></script>
+<script data-cfasync="false" src="js/main.js"></script>
+<script data-cfasync="false" src="js/jscookie.js"></script>
+<script data-cfasync="false" src="js/particles.js"></script>
+<script data-cfasync="false" src="js/particles-sel.js"></script>
+<noscript>
+<style>
+.fade-up-onstart {
+	display:inherit;
+}
+.fade-in-onload {
+	display:inherit;
+}
+.landing-con-container {
+	top:50%;
+	margin-top:-139px;
+}
+.toggle-navsidebar {
+	background:none;
+	width:auto;
+}
+.sidebar-con-anim {
+	width:300px;
+}
+</style>
+</noscript>
+<script data-cfasync="false" src="js/carousel.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ASTRUM",
+  "url": "https://www.astrums.pro",
+  "logo": "https://www.astrums.pro/favicon.ico",
+  "sameAs": [
+    "https://vk.com/astrum_mc",
+    "https://youtube.com/@Austral_",
+    "https://dsc.gg/astrums"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-900-000-0000",
+    "contactType": "customer support",
+    "areaServed": "RU",
+    "availableLanguage": ["Russian", "English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  }
+}
+</script>
 
-	<link rel="preload" as="image" href="/img/pie.svg">
-    <link rel = "stylesheet" href = "/css/pages/index.css">
 </head>
 <body>
-
-    <script type="module" src = "/js/lib/svg-sparkline.min.js" async></script>
-
-<nav>
-    <menu class = "container">
-		
-
-		
-	  
-		
-			<a 
-				href="/" 
-				class="
-					menu-link 
-					active"
-			>
-				Главная
-			</a>
-		
-			<a 
-				href="/read/faq" 
-				class="
-					menu-link 
-					"
-			>
-				FAQ
-			</a>
-		
-			<a 
-				href="/rules" 
-				class="
-					menu-link 
-					"
-			>
-				Правила
-			</a>
-			
-		
-		<div class = "secondary-links">
-			
-				<a 
-					href="/history" 
-					class=""
-				>
-					История
-				</a>
-			
-				<a 
-					href="/read/contacts" 
-					class=""
-				>
-					Контакты
-				</a>
-			
-				<a 
-					href="/read/gallery" 
-					class=""
-				>
-					Галерея
-				</a>
-			
-				<a 
-					href="/read/other" 
-					class=""
-				>
-					Прочее
-				</a>
-			
-		</div>
-
-		
-        <div class = "connect">
-			Подключиться — <strong class = "ip">cmcraft.su</strong>
-        </div>
-
-	</menu>
-
-	
-	<div class = "container online">
-		 
-		<div class = "online-plot" style = "height: 64px">
-			<!-- width="1152" -->
-			<svg-sparkline
-				values="19,28,31,36,34,14,5,12,21,32,27,24,20,10,4,10,12,21,24,28,22,11,3,7,11,18,29,33,29,16,6,12,21,21,13" 
-				curve="true" 
-				color="#00ca6f"
-				line-width="3"
-				endpoint="false"
-				width = "1330"
-				height="55"
-				gradient="true" 
-				gradient-color="color-mix(in srgb, #00ca6f, transparent 85%)"
-			>
-			</svg-sparkline>
-			<!-- <span id = "online-plot-min"></span>
-			<span id = "online-plot-max"></span> -->
-		</div>
-		
-		<div class = "online-value">
-			<div 
-				class = "status status-up"
-				title = "Сервер работает"
-			></div>
-			13/200 онлайн
-			
-			<small 
-				class = "online-record"
-				title = "Установлен 26 июня 2024 "
-			>
-				Рекорд — 168
-			</small>
-		</div>
-
-	</div>
-	
-
-</nav>
-
-<script>
-	const plot = {
-		el: document.querySelector('svg-sparkline'),
-		container: document.querySelector('.online-plot'),
-	}
-	plot.values = plot.el.getAttribute("values").replace(' ', '').split(',').map(Number);
-
-	// Расчёт отностиельных координат всех значений
-	plot.coordinates = plot.values.map((value, index) => {
-		return {
-			value,
-			x: index / (plot.values.length - 1),
-			y: value / Math.max(...plot.values)
-		}
-	});
-
-	function findNearestValueIndex(x) {
-		let nearestIndex = 0
-		let nearestDistance = Infinity
-
-		plot.coordinates.forEach((coord, index) => {
-			const distance = Math.abs(coord.x + (1/plot.values.length/4) - x);
-			if (distance < nearestDistance) {
-				nearestDistance = distance
-				nearestIndex = index
-			}
-    	})
-
-		return nearestIndex
-	}
-
-	// Стили указателя значения
-	const valueStyles = {
-		position: 'absolute',
-		fontSize: '55%',
-		textAlign: 'center',
-		fontWeight: '600',
-		fontFamily: 'var(--font-accent)',
-		direction: 'ltr',
-		whiteSpace: 'nowrap',
-		padding: '0 0.25rem',
-		backdropFilter: 'blur(4px)',
-		color: 'color-mix(in srgb, currentColor, transparent 10%)',
-		borderRadius: '0.3rem',
-		boxShadow: 'var(--shadow--lighter)',
-		transform: 'translate(-50%, 0)',
-	};
-	
-	// Показать значение ближайшей к курсору точки
-	function showValueAtCoordinates(index) {
-		if (index === plot.coordinates.length-1 || index === 0) return;
-
-		const valueEl = document.createElement('div')
-		const valueCoordinates = plot.coordinates[index]
-		
-		for (const style in valueStyles) {
-			valueEl.style[style] = valueStyles[style]
-		}
-		valueEl.style.backgroundColor = valueCoordinates.value !== 0 ? '#00ca6f66' : '#ff2222aa',
-
-		valueEl.style.left = `calc(${valueCoordinates.x * 100}%)`
-		
-		if (valueCoordinates.y > 0.5) {
-			valueEl.style.bottom = `calc(${valueCoordinates.y * 100}% - 1.4rem - 0.25rem - 4px)`
-			valueEl.style.clipPath = 'polygon(50% 0%, 66% 25%, 100% 30%, 100% 70%, 100% 100%, 50% 100%, 0 100%, 0% 70%, 0 30%, 33% 25%)'
-			valueEl.style.paddingTop = '0.33rem'
-		} else {
-			valueEl.style.bottom = `calc(${valueCoordinates.y * 100}% + 2px)`
-			valueEl.style.clipPath = 'polygon(0 0, 100% 0, 100% 70%, 66% 75%, 50% 100%, 33% 75%, 0 70%)'
-			valueEl.style.paddingBottom = '0.33rem'
-		}
-		valueEl.innerHTML = String(plot.values[index])
-
-		return valueEl
-	}
-
-	plot.el.addEventListener('mousemove', (event) => {
-		const rect = plot.el.getBoundingClientRect()
-		const x = (event.clientX - rect.left) / rect.width
-		const nearestIndex = findNearestValueIndex(x)
-		const shadow = plot.el.shadowRoot
-		const wrapper = shadow.getElementById('wrapper')
-
-		if (wrapper.querySelector('.value-display')) {
-			wrapper.querySelector('.value-display').remove()
-		}
-
-		const valueEl = showValueAtCoordinates(nearestIndex)
-		valueEl.classList.add('value-display')
-		wrapper.appendChild(valueEl)
-	});
-
-	setTimeout(() => {
-		const shadow = plot.el.shadowRoot
-		shadow.innerHTML = `<div id="wrapper">${plot.el.shadowRoot.innerHTML}</div>`
-		shadow.querySelector('title').innerHTML = 'График онлайна'
-		const wrapper = shadow.getElementById('wrapper')
-		wrapper.style.height = shadow.querySelector('svg').getAttribute('height')
-		wrapper.style.position = "relative"
-	}, 228);
-</script>
-  
-
-<script>
-// Прокрутка графика онлайна жестом
-plot.container.style.cursor = 'grab';
-
-let pos = { top: 0, left: 0, x: 0, y: 0 };
-
-const mouseDownHandler = function (e) {
-    plot.container.style.cursor = 'grabbing';
-    plot.container.style.userSelect = 'none';
-
-    pos = {
-        left: plot.container.scrollLeft,
-        top: plot.container.scrollTop,
-        x: e.clientX,
-        y: e.clientY,
-    };
-
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-};
-
-const mouseMoveHandler = function (e) {
-    const dx = e.clientX - pos.x;
-    const dy = e.clientY - pos.y;
-    plot.container.scrollTop = pos.top - dy;
-    plot.container.scrollLeft = pos.left - dx;
-
-	const wrapper = plot.el.shadowRoot.getElementById('wrapper')
-	if (wrapper.querySelector('.value-display')) {
-		wrapper.querySelector('.value-display').remove()
-	}
-};
-
-const mouseUpHandler = function () {
-    plot.container.style.cursor = 'grab';
-    plot.container.style.removeProperty('user-select');
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-};
-
-plot.container.addEventListener('mousedown', mouseDownHandler);
-</script>
-
-<script>
-	// Прокрутка к выбранной странице в меню, актуально на мобиле
-	const menu = document.querySelector('menu')
-	const active = document.querySelector('menu a.active')
-	menu.scrollLeft = active.offsetLeft + active.clientWidth/2 - menu.offsetWidth/2
-</script>
-
-    <main>
-
-		<section class = "container banner">
-
-			<div class = "banner-hero">
-				<h1 class = "banner-title">
-                    CMCraft
-				</h1>
-				<p class = "banner-subtitle">
-					Ванильный сервер
-				</p>
-				<nobr class = "banner-caption">
-					 Без доната · Без приватов · Без грифа
-				</nobr>
-			</div>
-
-			<div class = "banner-season">
-				
-
-				<!-- Текущий сезон -->
-				
-					
-						С
-					
-					26 июня 
-					идёт <b>8</b> сезон
-
-				<!-- Межсезонье -->
-				
-
-			</div>
-
-		</section>
-
-		<section class = "container info">
-
-			<div class="info-block main">
-				<h2>О сервере</h2>
-				<p>
-					Мы стараемся обеспечить опыт игры, максимально приближённый к ванильному выживанию.
-                    У нас нет приватов и кучи других шлаковых плагинов. Только те дополнения, которые необходимы
-                    для комфортной игры и стабильной работы сервера.
-				</p>
-                <p>
-                    На сервере отсутствуют любые формы доната, даже косметического, что делает всех игроков
-                    абсолютно равными, в том числе перед <a href = "/rules">правилами</a>. Если вы подвергнетесь
-                    нападению или вашу базу разрушат, вы можете обратиться к админам, они откатят её в
-                    первоначальное состояние.
-                </p>
-				<p>
-					Сервер работает на выделенной машине и поддерживается грамотной технической администрацией,
-                    что позволяет обеспечить высокую производительность, хороший аптайм и низкий пинг.
-				</p>
-			</div>
-
-			<div class="info-block secondary">
-				<h2>Как начать играть?</h2>
-				<p>
-					Это бесплатно, нужно всего лишь заполнить <a href>небольшую анкету</a>
-                    в нашей группе ВК. Её рассмотрение займет около одного-двух дней, после чего,
-                    в случае одобрения, вы будете занесены в белый список и сможете зайти на сервер.
-                    Для посторонних сервер закрыт — это нужно для того, чтобы отсеять гриферов и ботов.
-				</p>
-				<p>
-					Регистрация на нашем сервере всегда была и будет бесплатной, а аккаунты
-					никогда не удаляются.
-				</p>
-				<p>
-					Также советуем вступить в наш <a href = "https://discord.com/invite/MPfPsXabjK">дискорд,</a>
-					где мы общаемся, выкладываем новости и оповещаем об ивентах.
-				</p>
-			</div>
-
-			<div class="info-block tertiary-1">
-				<div style = "font-size: 6em; line-height: 1;">
-					217
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MHJSCJJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<img src="images/hero-main.png" width="1" height="1" alt="Логотип сервера Astrum - Аструм" loading="lazy">
+<div class="theme-btn-close toggle-theme">
+</div>
+<div class="menu-btn-backtotop">
+</div>
+<div class="menu-con-container">
+	<div class="menu-con-outer">
+		<div class="menu-con-inner">
+			<div class="menu-con-logo">
+				<a href="/" title="Главная страница сайта" aria-label="Главная страница сайта">
+				<div class="menu-ico-logo">
 				</div>
-				<p>анкет за декабрь</p>
+				</a>
 			</div>
-
-			<div class="info-block tertiary-2">
-				<div style = "font-size: 6em; line-height: 1;">
-					213
-				</div>
-				<p>дней с начала сезона</p>
+			<div class="mobile-menu-btn-open toggle-mobilemenu">
 			</div>
-
-		</section>
-
-	</main>
-
-	<footer>
-	<hr class = "footer-line">
-
-	<div class = "container footer">
-
-		<div class = "footer-cmc">
-			<img 
-				src = "/img/heart.svg" 
-				class = "footer-heart" 
-				height = "16"
-			>
-			<img 
-				src = "/img/pie.svg" 
-				height = "32"
-			>
-			<img 
-				src = "/img/heart.svg" 
-				class = "footer-heart" 
-				height = "16"
-			>
-			
-			<div class = "server-info">
-				TPS — 20.00<br>
-				Аптайм — 100 %
+			<div class="mobile-menu-btn-darkmode toggle-darkmode">
 			</div>
 			
+			<div class="menu-con-divider">
+			</div>
+			
+			<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+			<div class="menu-btn-select">
+				<span>Покупка доната</span>
+			</div>
+			</a>
+			<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+			<div class="menu-btn-select">
+				<span>Discord</span>
+			</div>
+			</a>
+			<a href="https://youtube.com/@Austral_" target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+			<div class="menu-btn-select">
+				<span>YouTube</span>
+			</div>
+			</a>
+			<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+			<div class="menu-btn-select">
+				<span>ВКонтакте</span>
+			</div>
+			</a>
+			<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+			<div class="menu-btn-select">
+				<span>Онлайн карта</span>
+			</div>
+			</a>
+			</div>
 		</div>
-
 	</div>
-</footer>
 
+<div class="mobile-menu-con-container popup-mobilemenu" style="display:none;">
+	<div class="menu-con-backdrop-2">
+	</div>
+	<div class="mobile-menu-con-scroll">
+		<div class="mobile-menu-con-outter">
+			<div class="mobile-menu-con-inner" style="overflow: hidden !important;">
+				<div class="mobile-menu-tx1-group">
+					<span>Основное</span>
+				</div>
+				<div class="mobile-menu-con-divider">
+				</div>
+				<a href="/" title="Главная страница сайта" aria-label="Главная страница сайта">
+				<div class="mobile-menu-btn-icon">
+				</div>
+				<div class="mobile-menu-btn-select">
+				<span>Главная</span>
+				</div>
+				</a>
+				<div class="mobile-menu-tx1-group">
+					<span>Ссылки</span>
+				</div>
+				<div class="mobile-menu-con-divider">
+				</div>
+				<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+				<div class="mobile-menu-btn-icon">
+				</div>
+				<div class="mobile-menu-btn-select">
+					<span>Покупка доната</span>
+				</div>
+				</a>
+				<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+				<div class="mobile-menu-btn-icon">
+				</div>
+				<div class="mobile-menu-btn-select">
+					<span>Онлайн карта</span>
+				</div>
+				</a>
+            			<a href="https://youtube.com/@Austral_" target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+           			<div class="menu-btn-select">
+                			<span>YouTube</span>
+            			</div>
+            			</a>
+				<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+				<div class="mobile-menu-btn-icon">
+				</div>
+				<div class="mobile-menu-btn-select">
+					<span>Discord</span>
+				</div>
+				</a>
+				<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+				<div class="mobile-menu-btn-icon">
+				</div>
+				<div class="mobile-menu-btn-select">
+					<span>ВКонтакте</span>
+				</div>
+				</a>
+				<div class="mobile-menu-btn-spacer">
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
 <script>
-// Ссылки по Бирману
-const QUOTATION_MARKS = '"\'«»‘’‚‛“”„‟‹›\(\)' // Перечень возможных кавычек
-const PUNCTUATION_MARKS = '.!?:;,' // Перечень возможных знаков препинания, стоящих после последней кавычки
-
-const surroundedByQuotationMarks = new RegExp(`^([${QUOTATION_MARKS}]{1})(.*)([${QUOTATION_MARKS}]{1}[${PUNCTUATION_MARKS}]?)$`) // Магическое регулярное выражение, чтобы найти и заменить ссылки, начинающиеся (^) с кавычки и заканчивающиеся ($) кавычкой с необязательным знаком препинания
-
-Array.from(document.querySelectorAll('a')) // Находим все ссылки
-	.filter(a => surroundedByQuotationMarks.test(a.textContent)) // Отбираем нужные нам
-	.forEach(a => a.innerHTML = a.innerHTML.replace(surroundedByQuotationMarks, '$1<u>$2</u>$3')) // Заворачиваем содержимое в <u>
-
 </script>
-    
-</body>
-</html>
+<div class="page-con-content landing-con-override">
+	<div class="wavebar-con-container-master">
+		<div class="wavebar-con-wrap">
+			<div class="wavebar-svg-object">
+			</div>
+			<div class="wavebar-svg-object">
+			</div>
+		</div>
+	</div>
+	<div class="landing-ico-scrolldown">
+	</div>
+	<div class="landing-con-main">
+		<div id="object-particles">
+		</div>
+		<div class="content-con-backdrop darkmode-header">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class="landing-con-left content-expand ">
+					<div class="landing-con-container scale-content-txt-1 fade-in-onload">
+						<div class="landing-ico-logo">
+						</div>
+						<div class="landing-tx1-heading pulsate">
+							<h1>ASTRUM - Ванильный Майнкрафт сервер!<br>1.20 - 1.21.x</h1>
+						</div>
+						<div class="landing-tx2-heading">
+							<p>
+								 Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!
+							</p>
+							<div class="landing-btn-container">
+										<div class="build-ico-os">
+									</div>
+									
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="landing-con-right content-remove ">
+					<div class="landing-img-hero" style="background: url(images/hero-main.png) no-repeat center; background-size: contain;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-con-discord darkmode-discord">
+		<div class="discord-left-logo">
+			<img alt="Discord Left Banner" src="images/discord-left.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="discord-center-logo">
+			<img alt="Discord Logo" src="images/discord-center.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="discord-right-logo">
+			<img alt="Discord Right Banner" src="images/discord-right.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class="discord-con-container">
+					<div class="discord-con-logo">
+						<div class="discord-img-logo">
+						</div>
+					</div>
+					<div class="discord-con-mantra">
+						<div class="discord-wrp-mantra scale-content-txt-1">
+							<div class="discord-tx1-mantra darkmode-txt">
+								<h2>Подать заявку!</h2>
+								<div class="landing-con-divider">
+								</div>
+							</div>
+							<div class="discord-tx2-mantra darkmode-txt">
+								<p>
+									 Подайте заявку в нашем Discord сервере! <br> Для игры на сервере вы должны будете привязать свой аккаунт к Дискорду, так что вступление обязательно!
+								</p>
+							</div>
+							<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+							<div class="discord-btn-button">
+								<div class="discord-ico-button">
+								</div>
+								<div class="discord-tx1-button">
+									<span>Присоединиться</span>
+								</div>
+							</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg class="discord-con-animate" preserveAspectRatio="none" width="1920" height="100%" viewBox="0 0 1920 330">
+		<path class="discord-svg-animate" fill="#fff" fill-opacity="0.1" d="M140.881198,194.260295 C257.600568,129.32862 342.939626,119.84993 418.009939,203.154617 C493.080251,286.459305 545.728689,70.9046172 636.439626,63.9593047 C727.150564,57.0139922 768.99822,139.670242 858.802907,119.431961 C948.607595,99.1936797 1071.91228,-32.9977266 1243.91228,7.75227342 C1415.91228,48.5022734 1404.10369,208.584305 1508.27166,178.709305 C1612.43963,148.834305 1633.73291,79.913472 1711.63588,98.8569055 C1776.28676,114.577866 1819.96778,221.391836 1889.37253,185.808108 C2017.32661,120.206212 2004.01952,336.769569 2004.01952,336.769569 L271.635881,337 L-149.063338,337 C-149.063338,337 -245.850307,175.637635 -58.0633382,228.867188 C33.8652851,254.92501 64.1722713,236.933925 140.881198,194.260295 Z"></path>
+		</svg>
+	</div>
+	<div class="landing-con-patreon darkmode-feature">
+		<div class="patreon-img-backdrop">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class="patreon-con-container">
+					<div class="patreon-con-logo">
+						<div class="patreon-img-logo">
+						</div>
+					</div>
+					<div class="patreon-con-mantra">
+						<div class="patreon-wrp-mantra scale-content-txt-1 ">
+							<div class="patreon-tx1-mantra">
+								<h3>Купить проходку</h3>
+								<div class="landing-con-divider" style="background: hwb(212 11% 10%);">
+								</div>
+							</div>
+							<div class="patreon-tx2-mantra darkmode-txt">
+								<p>
+									 Чтобы не ждать рассмотрения заявки до 2-х суток, вы можете просто купить проходку и поддержать проект!
+								</p>
+							</div>
+							<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+							<div class="patreon-btn-button">
+								<div class="patreon-ico-button">
+								</div>
+								<div class="patreon-tx1-button">
+									<span>Перейти</span>
+								</div>
+							</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<footer>
+<div class="footer-con-container">
+	<div class="footer-con-overlay darkmode-header">
+		<div class="wavebar-con-container">
+			<div class="wavebar-con-wrap">
+				<div class="wavebar-svg-object">
+				</div>
+				<div class="wavebar-svg-object">
+				</div>
+			</div>
+		</div>
+		<div class="footer-con-header">
+			<div class="footer-con-outer">
+				<div class="footer-con-inner">
+					<div class="footer-ico-logo darkmode-footer-logo">
+					</div>
+					<table class="footer-table-out">
+					<tbody><tr>
+						<td>
+							<div class="footer-table-in">
+								<div class="footer-con-bound">
+									<div class="footer-tx1-bound">
+										<span>Сервер</span>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+										<span>Донат</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+										<span>Онлайн карта</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="footer-table-in">
+								<div class="footer-con-bound">
+									<div class="footer-tx1-bound">
+										<span>Соц. сети</span>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+										<span>ВКонтакте</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+										<span>Discord</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://www.youtube.com/@Austral_" target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+										<span>YouTube</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="footer-con-sources">
+									
+								
+							
+						</td>
+	
+
+
+
+</tr></tbody></table></div></div></div></div></div></footer></div></body></html>
