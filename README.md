@@ -1,100 +1,406 @@
-
-<!DOCTYPE html>
-<html lang="ru-ru">
+<!doctype html>
+<html lang="ru-RU">
 <head>
-	<script type="text/javascript">
-			</script>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Diamond Town</title>
-	<base href="https://autoworldminecraft.github.io/" />
-		
-	
-						<meta name="viewport" content="width=device-width, initial-scale=1" />
-					<meta name="description" content="Ванильный Minecraft Сервер" />
-			<meta name="keywords" content="Главная" />
-		
-	<!-- Facebook Open Graph -->
-		<meta property="og:title" content="Autoworld" />
-			<meta property="og:description" content="Ванильный Minecraft Сервер" />
-			<meta property="og:image" content="https://lh5.googleusercontent.com/u260T120_2xjAEv67b7iIv8M4CMDz4XIf-RM8KGKhEmj1cophtDj3GqfQC41yzKJ8csl3Et8cdMOVQ7E9IxpLc8=w16383" />
-			<meta property="og:type" content="article" />
-			<meta property="og:url" content="https://autoworldminecraft.github.io/" />
-		<!-- Facebook Open Graph end -->
+<title>ASTRUM - Приватный сервер Minecraft 1.21 | Ванильное выживание без гриферов</title>
+<meta charset="utf-8">
+<meta name="description" content="Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой.">
+<meta name="keywords" content="astrum, ast, аструм, аст, астрал, austral, ванильный сервер Minecraft, Майнкрафт, Minecraft, SPWorlds, Ванильный сервер, Приватный сервер">
+<meta property="og:title" content="ASTRUM - Приватный сервер" />
+<meta property="og:description" content="Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!" />
+<meta property="og:image" content="/favicon.ico" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://www.astrums.pro" />
+<meta property="og:locale" content="ru_RU"/>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ASTRUM" />
+<meta name="theme-color" content="#9e2dcf">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<meta name="generator" content="Рег.ру" />
-			<script src="js/common-bundle.js?ts=20250114105712" type="text/javascript"></script>
-	<script src="js/a188dda851df00d03fbe9110eacd609d-bundle.js?ts=20250114105712" type="text/javascript"></script>
-	<link href="css/common-bundle.css?ts=20250114105712" rel="stylesheet" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese" rel="stylesheet" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese" rel="stylesheet" type="text/css" />
-	<link href="css/a188dda851df00d03fbe9110eacd609d-bundle.css?ts=20250114105712" rel="stylesheet" type="text/css" id="wb-page-stylesheet" />
-	<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="gallery/favicons/favicon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="152x152" href="gallery/favicons/favicon-152x152.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="gallery/favicons/favicon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="gallery/favicons/favicon-192x192.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="gallery/favicons/favicon-60x60.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="gallery/favicons/favicon-76x76.png"><link rel="icon" type="image/png" href="gallery/favicons/favicon.png">
-	<script type="text/javascript">
-	window.useTrailingSlashes = true;
-	window.disableRightClick = false;
-	window.currLang = 'ru';
+<meta name='twitter:card' content='ASTRUM - Приватный сервер' />
+<meta name='twitter:site' content='@Astrum' />
+<meta name='twitter:title' content='ASTRUM - Информация' />
+<meta name='twitter:description' content='Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!' />
+<meta name='twitter:image' content='/favicon.ico' />
+<meta name='twitter:image:alt' content='astrum' />
+
+<link rel="stylesheet" type="text/css" href="/lib/css/anim.css?v7"/>
+<link rel="stylesheet" type="text/css" href="/lib/css/dark.css?v7"/>
+<link rel="stylesheet" type="text/css" href="/lib/css/main.css?v8"/>
+<link rel="stylesheet" type="text/css" href="/lib/css/debug.css?v53"/>
+<link rel="stylesheet" type="text/css" href="/lib/css/scale.css?v7"/>
+<script data-cfasync="false" src='/lib/js/jquery.js'></script>
+<script data-cfasync="false" src='/lib/js/dark.js?v8'></script>
+<script data-cfasync="false" src='/lib/js/main.js'></script>
+<script data-cfasync="false" src='/lib/js/jscookie.js'></script>
+<script data-cfasync="false" src='/lib/js/particles.js'></script>
+<script data-cfasync="false" src='/lib/js/particles-sel.js'></script>
+<noscript>
+<style>
+.fade-up-onstart {
+	display:inherit;
+}
+.fade-in-onload {
+	display:inherit;
+}
+.landing-con-container {
+	top:50%;
+	margin-top:-139px;
+}
+.toggle-navsidebar {
+	background:none;
+	width:auto;
+}
+.sidebar-con-anim {
+	width:300px;
+}
+</style>
+</noscript>
+<script data-cfasync="false" src='/lib/js/carousel.js?v=1'></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ASTRUM",
+  "url": "https://www.astrums.pro",
+  "logo": "https://www.astrums.pro/favicon.ico",
+  "sameAs": [
+    "https://vk.com/astrum_mc",
+    "https://youtube.com/@Austral_",
+    "https://dsc.gg/astrums"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+7-900-000-0000",
+    "contactType": "customer support",
+    "areaServed": "RU",
+    "availableLanguage": ["Russian", "English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  }
+}
 </script>
-		
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.min.js"></script>
-	<![endif]-->
 
-		<script type="text/javascript">
-		$(function () {
-});    </script>
 </head>
-
-
-<body class="site site-lang-ru " ><div id="wb_root" class="root wb-layout-vertical"><div class="wb_sbg"></div><div id="wb_header_a188dda851df00d03fbe9110eacd609d" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19436f44c0c0001a3cd972714e1e6dc" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19436f44c0c0108b9029c882c7e3c7f" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a19436f44c0c023d1503a9faca06fd92" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a19436f44c0c036bf02b4809c9fd932a" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery_gen/6b02ab5fc5d78cf82db0f9177905310b_60x60_fit.png?ts=1736845032"></div></div></div><div id="a19436f44c0c04a9b666b809134ae198" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom4"><span class="wb-stl-highlight">Diamond Town</span></h4>
-</div></div></div><div id="a19436f44c0c050cce7543c3f744cbd9" class="wb_element wb-menu wb-prevent-layout-click wb-menu-mobile" data-plugin="Menu"><a class="btn btn-default btn-collapser"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><ul class="hmenu" dir="ltr"><li class="wb_this_page_menu_item"><a href="https://diamond-town.ru/"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="display: inline-block; vertical-align: middle; position: relative; top: -1px; height: 1em; width: 1em; overflow: visible; direction: ltr;"><text x="65.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg>&nbsp;Главная</a></li><li class=""><a href="rules/"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="display: inline-block; vertical-align: middle; position: relative; top: -1px; height: 1em; width: 1em; overflow: visible; direction: ltr;"><text x="1.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg>&nbsp;Правила сервера</a></li><li class=""><a href="info/"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="display: inline-block; vertical-align: middle; position: relative; top: -1px; height: 1em; width: 1em; overflow: visible; direction: ltr;"><text x="129.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg>&nbsp;Информация</a></li><li class=""><a href="help/"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="display: inline-block; vertical-align: middle; position: relative; top: -1px; height: 1em; width: 1em; overflow: visible; direction: ltr;"><text x="1.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg>&nbsp;Помощь</a></li></ul><div class="clearfix"></div></div></div></div></div></div></div></div><div id="wb_main_a188dda851df00d03fbe9110eacd609d" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943be5e68c0044b2b942219745516b" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1944911127800112a9d9ed50ee1663c" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a194491112780178f3c0b28356117ce6" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19449125872005c306a874297df9523" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery/photo_2024-12-19_18-48-311.svg?ts=1736845032"></div></div></div></div></div><div id="a19449111278022af9013930b4ab1b9d" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a194491112780490e29702b5a3364881" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1944a471d840004ba9b39e4cbea1a8f" class="wb_element wb_text_element wb-anim-entry wb-anim wb-anim-zoom-in-top wb-anim wb-anim-pulse-in" data-plugin="TextArea" data-wb-anim-entry-time="0.6" data-wb-anim-entry-delay="0" style=" line-height: normal;"><h4 class="wb-stl-custom7" style="text-align: left;">Diamond Town</h4>
-</div><div id="a1944911a463001860cc54f17f7ed9ad" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom16"><span style="color:#000000;">Ванильный Minecraft-Сервер Наш Mineceaft сервер создан для ванильного выживания без модов, приватов, донатов.</span></p>
-</div></div></div><div id="a19449111278053eb5f00edd134c6658" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1944911d192008a08910b853e1ce3a2" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p><span style="font-size:16px;">Преимущества нашего сервера:</span></p>
-
-<p> </p>
-
-<p><span style="font-size:16px;">✔ Доброе и отзывчивое комьюнити</span></p>
-
-<p> </p>
-
-<p><span style="font-size:16px;">✔ Активная и справедливая администрация</span></p>
-
-<p> </p>
-
-<p><span style="font-size:16px;">✔ Регулярные ивенты, которые не дадут заскучать</span></p>
-
-<p> </p>
-
-<p><span style="font-size:16px;">✔ Богатая история</span></p>
-
-<p> </p>
-
-<p><span style="font-size:16px;">✔ Справедливые правила</span></p>
-</div></div></div></div></div></div></div></div></div><div id="a1943cae5fad005f17fd6de7c08c3f84" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb000ef72aab5587d7f93ca" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb100a74a4e0a8b23b9d454" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb3009b2b9db5705e425d8b" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom19" style="text-align: center;">Как начать играть?</h4>
-</div></div></div><div id="a1943cae5fb900690be316f10839f8d2" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943cae5fbb00fbd328a898687c5815" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbd00981274080fa7f21a7e" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbe000a941e6ed0ce2d3c23" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbf00af1a82a18a7d245a61" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery/pasted_962571874.png?ts=1736845032"></div></div></div></div></div><div id="a1943cae5fc30057f6c88315159fcaa3" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fc4009a1d6478923f69e5a7" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom20">Адрес сервера</h4>
-</div><div id="a1943cae5fc6004c0052dddff66d91cd" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom22">Скопируйте его для подключения в игре!</p>
-</div></div></div><div id="a1943cae5fca00f5a12e5e443ca97710" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19449d275e600cc4d64b1979f8ff3c6" class="wb_element" data-plugin="Button"><a class="wb_button" href="javascript:void(0);" data-popup="wb_popup:Адрес-сервера/?wbPopupMode=1;w=351;h=351;pagePopup=1;" title="Скопировать"><span>Скопировать</span></a></div></div></div></div></div></div></div><div id="a1943cae5fd40088b526905062ea1787" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fd5003e075817f4904c7c8f" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fd700af5c2ef37e0ee56d4b" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fd800ff2db547f47537ec83" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery/intetnet.png?ts=1736845032"></div></div></div></div></div><div id="a1943cae5fdc00cc4d61d84f60159cc8" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fde00178b092784e299ae2b" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom20">Карта мира</h4>
-</div><div id="a1943cae5fe000ae9c02141d684fcaa1" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom22">Для просмотра  нашего мира и построек</p>
-</div></div></div><div id="a1943cae5fe40033a91b52a2492eae88" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19449cfc6520086ed584a5587ea530a" class="wb_element" data-plugin="Button"><a class="wb_button" href="javascript:void(0);" data-popup="wb_popup:https://map-diamond-towm.dynmap.xyz;w=2000;h=1500;" title="Открыть"><span>Открыть</span></a></div></div></div></div></div></div></div><div id="a1943cae5fed002810b4e49350632a04" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fef007fb848f0866277ea91" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5ff000f6750b8e1730842621" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5ff10062499a2d1228b5208f" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery_gen/a6e569e08800b638db1fa853bfb61b66_fit.png?ts=1736845032"></div></div></div></div></div><div id="a1943cae5ff400fe9020e09eacd5bbe7" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5ff600fe4eeb6b1e44faddbd" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom20">Сборка клиента MultiMC</h4>
-</div><div id="a1943cae5ff800ac306050aa5d0bfa78" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom22">Скачивайте сборку для быстрого начала</p>
-</div></div></div><div id="a1943cae5ffc000c70cc0b0d1bc9cd68" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5ffd007b67f8573a8aabd6d5" class="wb_element" data-plugin="Button"><a class="wb_button" href="javascript:void(0);" data-popup="wb_popup:Страница-скачивания/?wbPopupMode=1;w=1000;h=1000;pagePopup=1;" title="Скачать"><span>Скачать</span></a></div></div></div></div></div></div></div></div></div></div></div><div id="a1943cae947500dd20928ba6d6681fe9" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae94770022aa9d45f654475d05" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom19" style="text-align: center;">Присоединяйся</h4>
-</div><div id="a1943cae947b00ff819ba4527698fe63" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943cae947c00485b0602c111076450" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae947e000b0d96007eba02c432" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h2 class="wb-stl-custom17">Youtube (скоро)</h2>
-</div><div id="a1943cae9480000cb1adf0b87c26e9e8" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper" style="overflow: visible; display: flex"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="direction: ltr; color:#ffffff"><text x="129.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg></div></div></div></div></div><div id="a1943cae948500a321136fa71f7d82bb" class="wb_element wb-layout-element wb-layout-has-link" data-plugin="LayoutElement"><a class="wb-layout-link" href="https://t.me/d1amondtown" title="Telegram Diamond Town" target="_blank"></a><div class="wb_content wb-layout-vertical"><div id="a1943cae948600b100e1fcad4ee00c34" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h2 class="wb-stl-custom17">Telegram</h2>
-</div><div id="a1943cae94890089106829bf25fde96c" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper" style="overflow: visible; display: flex"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="direction: ltr; color:#ffffff"><text x="1.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg></div></div></div></div></div><div id="a19449ccd4d00045aac5e01113d9431b" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a19449ccd4d600bc53aabc8792b0eac3" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h2 class="wb-stl-custom17">Discord (скоро)</h2>
-</div><div id="a19449ccd4e20053d81b92425746e980" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery/icons8-discord-500.svg?ts=1736845032"></div></div></div></div></div></div></div></div></div></div></div></div></div><div id="wb_footer_a188dda851df00d03fbe9110eacd609d" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a194370131f60065e57ca6b0ca25dbf0" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a194371cf0e0009b78ca1fd74128bb7d" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943732ad9f00baba8c16ba6a2202b1" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943730b19401da27e75f39ab33944e" class="wb_element wb-anim-entry wb-anim wb-anim-fade-in-none wb-layout-element" data-plugin="LayoutElement" data-wb-anim-entry-time="0.6" data-wb-anim-entry-delay="0"><div class="wb_content wb-layout-horizontal"><div id="a1943730b1940214debbb47c8a9f4a84" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943730b1940347b4fb56b4b037d4da" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h3 class="wb-stl-custom14"><span style="color:rgba(255,255,255,1);">О нас</span></h3>
-</div><div id="a1943730b194040607e05ef8c076d0ca" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom13">Mineceaft сервер создан для ванильного выживания без модов, приватов, донатов.</p>
-</div></div></div><div id="a1943730b1940e79f9c3b5396086671a" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943730b1940f70497c4cfed8e6be86" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h3 class="wb-stl-custom14"><span style="color:rgba(255,255,255,1);">Контакты</span></h3>
-</div><div id="a1943730b194132feee2498c6f3c1949" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943730b194141aca1fbdd244677a5d" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap" style="height: 100%"><div class="wb-picture-wrapper" style="overflow: visible; display: flex"><svg xmlns="http://www.w3.org/2000/svg" width="1793.982" height="1793.982" viewBox="0 0 1793.982 1793.982" style="direction: ltr; color:#ffffff"><text x="1.501415" y="1537.02" font-size="1792" fill="currentColor" style='font-family: "FontAwesome"'></text></svg></div></div></div><div id="a1943730b1941506641fa8f1d5870ed0" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom13">support@diamond-town.ru</p>
-</div></div></div><div id="a1943730b1941640356c4554857483b9" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943730b19417b966983b9e9c76619c" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom13">© Diamond Town</p>
-</div><div id="a1943730b194186a99506036b2c0fe4b" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom13">2025</p>
-</div></div></div></div></div></div></div></div></div></div></div></div></div><div id="wb_footer_c" class="wb_element" data-plugin="WB_Footer" style="text-align: center; width: 100%;"><div class="wb_footer"></div><script type="text/javascript">
-			$(function() {
-				var footer = $(".wb_footer");
-				var html = (footer.html() + "").replace(/^\s+|\s+$/g, "");
-				if (!html) {
-					footer.parent().remove();
-					footer = $("#footer, #footer .wb_cont_inner");
-					footer.css({height: ""});
-				}
-			});
-			</script></div></div></div></div></body>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MHJSCJJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<img src="/img/graphics/landing/hero-main.png" width="1" height="1" alt="Логотип сервера Astrum - Аструм" loading="lazy"/>
+<div class="theme-btn-close toggle-theme">
+</div>
+<div class="menu-btn-backtotop">
+</div>
+<div class='menu-con-container'>
+	<div class="menu-con-outer">
+		<div class="menu-con-inner">
+			<div class="menu-con-logo">
+				<a href='/' title="Главная страница сайта" aria-label="Главная страница сайта">
+				<div class="menu-ico-logo">
+				</div>
+				</a>
+			</div>
+			<div class="mobile-menu-btn-open toggle-mobilemenu">
+			</div>
+			<div class="mobile-menu-btn-darkmode toggle-darkmode">
+			</div>
+			</a>
+			<div class="menu-con-divider">
+			</div>
+			</a>
+			<a href='https://shop.astrums.pro/' target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+			<div class="menu-btn-select">
+				<span>Покупка доната</span>
+			</div>
+			</a>
+			<a href='https://dsc.gg/astrums' target="_blank" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+			<div class="menu-btn-select">
+				<span>Discord</span>
+			</div>
+			</a>
+			<a href='https://youtube.com/@Austral_' target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+			<div class="menu-btn-select">
+				<span>YouTube</span>
+			</div>
+			</a>
+			<a href='https://vk.com/astrum_mc' target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+			<div class="menu-btn-select">
+				<span>ВКонтакте</span>
+			</div>
+			</a>
+			<a href='https://map.astrums.pro/' target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+			<div class="menu-btn-select">
+				<span>Онлайн карта</span>
+			</div>
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='mobile-menu-con-container popup-mobilemenu' style="display:none;">
+	<div class="menu-con-backdrop-2">
+	</div>
+	<div class='mobile-menu-con-scroll'>
+		<div class="mobile-menu-con-outter">
+			<div class="mobile-menu-con-inner" style="overflow: hidden !important;">
+				<div class='mobile-menu-tx1-group'>
+					<span>Основное</span>
+				</div>
+				<div class='mobile-menu-con-divider'>
+				</div>
+				<a href="/" title="Главная страница сайта" aria-label="Главная страница сайта">
+				<div class='mobile-menu-btn-icon'>
+				</div>
+				<div class='mobile-menu-btn-select'>
+				<span>Главная</span>
+				</div>
+				</a>
+				<div class='mobile-menu-tx1-group'>
+					<span>Ссылки</span>
+				</div>
+				<div class='mobile-menu-con-divider'>
+				</div>
+				<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+				<div class='mobile-menu-btn-icon'>
+				</div>
+				<div class='mobile-menu-btn-select'>
+					<span>Покупка доната</span>
+				</div>
+				</a>
+				<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+				<div class='mobile-menu-btn-icon'>
+				</div>
+				<div class='mobile-menu-btn-select'>
+					<span>Онлайн карта</span>
+				</div>
+				</a>
+            			<a href='https://youtube.com/@Austral_' target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+           			<div class="menu-btn-select">
+                			<span>YouTube</span>
+            			</div>
+            			</a>
+				<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+				<div class='mobile-menu-btn-icon'>
+				</div>
+				<div class='mobile-menu-btn-select'>
+					<span>Discord</span>
+				</div>
+				</a>
+				<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+				<div class='mobile-menu-btn-icon'>
+				</div>
+				<div class='mobile-menu-btn-select'>
+					<span>ВКонтакте</span>
+				</div>
+				</a>
+				<div class='mobile-menu-btn-spacer'>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><script>
+</script>
+<div class="page-con-content landing-con-override">
+	<div class="wavebar-con-container-master">
+		<div class="wavebar-con-wrap">
+			<div class="wavebar-svg-object">
+			</div>
+			<div class="wavebar-svg-object">
+			</div>
+		</div>
+	</div>
+	<div class='landing-ico-scrolldown'>
+	</div>
+	<div class="landing-con-main">
+		<div id="object-particles">
+		</div>
+		<div class="content-con-backdrop darkmode-header">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class='landing-con-left content-expand '>
+					<div class="landing-con-container scale-content-txt-1 fade-in-onload">
+						<div class='landing-ico-logo'>
+						</div>
+						<div class='landing-tx1-heading pulsate'>
+							<h1>ASTRUM - Ванильный Майнкрафт сервер!<br>1.20 - 1.21.x</h1>
+						</div>
+						<div class='landing-tx2-heading'>
+							<p>
+								 Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!
+							</p>
+							<div class='landing-btn-container'>
+										<div class="build-ico-os">
+									</div>
+									</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='landing-con-right content-remove '>
+					<div class='landing-img-hero' style="background: url(/img/graphics/landing/hero-main.png) no-repeat center; background-size: contain;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-con-discord darkmode-discord">
+		<div class="discord-left-logo">
+			<img alt="Discord Left Banner" src="/img/graphics/svg/discord-left.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="discord-center-logo">
+			<img alt="Discord Logo" src="/img/graphics/svg/discord-center.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="discord-right-logo">
+			<img alt="Discord Right Banner" src="/img/graphics/svg/discord-right.svg" loading="lazy" style="width: 100%; height: 100%;">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class="discord-con-container">
+					<div class="discord-con-logo">
+						<div class="discord-img-logo">
+						</div>
+					</div>
+					<div class="discord-con-mantra">
+						<div class="discord-wrp-mantra scale-content-txt-1">
+							<div class="discord-tx1-mantra darkmode-txt">
+								<h2>Подать заявку!</h2>
+								<div class="landing-con-divider">
+								</div>
+							</div>
+							<div class="discord-tx2-mantra darkmode-txt">
+								<p>
+									 Подайте заявку в нашем Discord сервере! <br> Для игры на сервере вы должны будете привязать свой аккаунт к Дискорду, так что вступление обязательно!
+								</p>
+							</div>
+							<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+							<div class="discord-btn-button">
+								<div class="discord-ico-button">
+								</div>
+								<div class="discord-tx1-button">
+									<span>Присоединиться</span>
+								</div>
+							</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg class="discord-con-animate" preserveaspectratio="none" width="1920" height="100%" viewbox="0 0 1920 330">
+		<path class="discord-svg-animate" fill="#fff" fill-opacity="0.1" d="M140.881198,194.260295 C257.600568,129.32862 342.939626,119.84993 418.009939,203.154617 C493.080251,286.459305 545.728689,70.9046172 636.439626,63.9593047 C727.150564,57.0139922 768.99822,139.670242 858.802907,119.431961 C948.607595,99.1936797 1071.91228,-32.9977266 1243.91228,7.75227342 C1415.91228,48.5022734 1404.10369,208.584305 1508.27166,178.709305 C1612.43963,148.834305 1633.73291,79.913472 1711.63588,98.8569055 C1776.28676,114.577866 1819.96778,221.391836 1889.37253,185.808108 C2017.32661,120.206212 2004.01952,336.769569 2004.01952,336.769569 L271.635881,337 L-149.063338,337 C-149.063338,337 -245.850307,175.637635 -58.0633382,228.867188 C33.8652851,254.92501 64.1722713,236.933925 140.881198,194.260295 Z"></path>
+		</svg>
+	</div>
+	<div class="landing-con-patreon darkmode-feature">
+		<div class="patreon-img-backdrop">
+		</div>
+		<div class="content-con-outside">
+			<div class="content-con-inside">
+				<div class="patreon-con-container">
+					<div class="patreon-con-logo">
+						<div class="patreon-img-logo">
+						</div>
+					</div>
+					<div class="patreon-con-mantra">
+						<div class="patreon-wrp-mantra scale-content-txt-1 ">
+							<div class="patreon-tx1-mantra">
+								<h3>Купить проходку</h3>
+								<div class="landing-con-divider" style="background: hwb(212 11% 10%);">
+								</div>
+							</div>
+							<div class="patreon-tx2-mantra darkmode-txt">
+								<p>
+									 Чтобы не ждать рассмотрения заявки до 2-х суток, вы можете просто купить проходку и поддержать проект!
+								</p>
+							</div>
+							<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+							<div class="patreon-btn-button">
+								<div class="patreon-ico-button">
+								</div>
+								<div class="patreon-tx1-button">
+									<span>Перейти</span>
+								</div>
+							</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<footer>
+<div class="footer-con-container">
+	<div class="footer-con-overlay darkmode-header">
+		<div class="wavebar-con-container">
+			<div class="wavebar-con-wrap">
+				<div class="wavebar-svg-object">
+				</div>
+				<div class="wavebar-svg-object">
+				</div>
+			</div>
+		</div>
+		<div class="footer-con-header">
+			<div class="footer-con-outer">
+				<div class="footer-con-inner">
+					<div class="footer-ico-logo darkmode-footer-logo">
+					</div>
+					<table class="footer-table-out">
+					<tr>
+						<td>
+							<div class="footer-table-in">
+								<div class="footer-con-bound">
+									<div class="footer-tx1-bound">
+										<span>Сервер</span>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
+										<span>Донат</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
+										<span>Онлайн карта</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="footer-table-in">
+								<div class="footer-con-bound">
+									<div class="footer-tx1-bound">
+										<span>Соц. сети</span>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
+										<span>ВКонтакте</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
+										<span>Discord</span>
+										</a>
+									</div>
+									<div class="footer-tx2-bound">
+										<a href="https://www.youtube.com/@Austral_" target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
+										<span>YouTube</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="footer-con-sources">
+									</div>
+								</div>
+							</div>
+						</td>
+	</div>
+</div>
+</footer>
 </html>
