@@ -6,7 +6,7 @@
 			</script>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Diamond Town</title>
-	<base href="https://diamond-town.ru/" />
+	<base href="https://autoworldminecraft.github.io/" />
 		
 	
 						<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,11 +14,11 @@
 			<meta name="keywords" content="Главная" />
 		
 	<!-- Facebook Open Graph -->
-		<meta property="og:title" content="Diamond Town" />
+		<meta property="og:title" content="Autoworld" />
 			<meta property="og:description" content="Ванильный Minecraft Сервер" />
-			<meta property="og:image" content="https://diamond-town.ru/gallery_gen/02956d9742007c2a22808bb44dc2aee2_fit.svg" />
+			<meta property="og:image" content="https://lh5.googleusercontent.com/u260T120_2xjAEv67b7iIv8M4CMDz4XIf-RM8KGKhEmj1cophtDj3GqfQC41yzKJ8csl3Et8cdMOVQ7E9IxpLc8=w16383" />
 			<meta property="og:type" content="article" />
-			<meta property="og:url" content="https://diamond-town.ru/" />
+			<meta property="og:url" content="https://autoworldminecraft.github.io/" />
 		<!-- Facebook Open Graph end -->
 
 		<meta name="generator" content="Рег.ру" />
@@ -52,23 +52,23 @@
 
 <p> </p>
 
-<p><span style="font-size:16px;">✔ Наличие голосового чата</span></p>
+<p><span style="font-size:16px;">✔ Доброе и отзывчивое комьюнити</span></p>
 
 <p> </p>
 
-<p><span style="font-size:16px;">✔ Адекватная администрация</span></p>
+<p><span style="font-size:16px;">✔ Активная и справедливая администрация</span></p>
 
 <p> </p>
 
-<p><span style="font-size:16px;">✔ Скрытый сюжет</span></p>
+<p><span style="font-size:16px;">✔ Регулярные ивенты, которые не дадут заскучать</span></p>
 
 <p> </p>
 
-<p><span style="font-size:16px;">✔ Низкий пинг</span></p>
+<p><span style="font-size:16px;">✔ Богатая история</span></p>
 
 <p> </p>
 
-<p><span style="font-size:16px;">✔ Защита от читеров</span></p>
+<p><span style="font-size:16px;">✔ Справедливые правила</span></p>
 </div></div></div></div></div></div></div></div></div><div id="a1943cae5fad005f17fd6de7c08c3f84" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb000ef72aab5587d7f93ca" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb100a74a4e0a8b23b9d454" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fb3009b2b9db5705e425d8b" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom19" style="text-align: center;">Как начать играть?</h4>
 </div></div></div><div id="a1943cae5fb900690be316f10839f8d2" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-horizontal"><div id="a1943cae5fbb00fbd328a898687c5815" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbd00981274080fa7f21a7e" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbe000a941e6ed0ce2d3c23" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fbf00af1a82a18a7d245a61" class="wb_element wb_element_picture" data-plugin="Picture" title=""><div class="wb_picture_wrap"><div class="wb-picture-wrapper"><img loading="lazy" alt="" src="gallery/pasted_962571874.png?ts=1736845032"></div></div></div></div></div><div id="a1943cae5fc30057f6c88315159fcaa3" class="wb_element wb-layout-element" data-plugin="LayoutElement"><div class="wb_content wb-layout-vertical"><div id="a1943cae5fc4009a1d6478923f69e5a7" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><h4 class="wb-stl-custom20">Адрес сервера</h4>
 </div><div id="a1943cae5fc6004c0052dddff66d91cd" class="wb_element wb_text_element" data-plugin="TextArea" style=" line-height: normal;"><p class="wb-stl-custom22">Скопируйте его для подключения в игре!</p>
