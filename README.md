@@ -1,406 +1,309 @@
-<!doctype html>
-<html lang="ru-RU">
-<head>
-<title>ASTRUM - Приватный сервер Minecraft 1.21 | Ванильное выживание без гриферов</title>
-<meta charset="utf-8">
-<meta name="description" content="Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой.">
-<meta name="keywords" content="astrum, ast, аструм, аст, астрал, austral, ванильный сервер Minecraft, Майнкрафт, Minecraft, SPWorlds, Ванильный сервер, Приватный сервер">
-<meta property="og:title" content="ASTRUM - Приватный сервер" />
-<meta property="og:description" content="Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!" />
-<meta property="og:image" content="/favicon.ico" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://www.astrums.pro" />
-<meta property="og:locale" content="ru_RU"/>
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="ASTRUM" />
-<meta name="theme-color" content="#9e2dcf">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name='twitter:card' content='ASTRUM - Приватный сервер' />
-<meta name='twitter:site' content='@Astrum' />
-<meta name='twitter:title' content='ASTRUM - Информация' />
-<meta name='twitter:description' content='Приватный сервер Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!' />
-<meta name='twitter:image' content='/favicon.ico' />
-<meta name='twitter:image:alt' content='astrum' />
-
-<link rel="stylesheet" type="text/css" href="/lib/css/anim.css?v7"/>
-<link rel="stylesheet" type="text/css" href="/lib/css/dark.css?v7"/>
-<link rel="stylesheet" type="text/css" href="/lib/css/main.css?v8"/>
-<link rel="stylesheet" type="text/css" href="/lib/css/debug.css?v53"/>
-<link rel="stylesheet" type="text/css" href="/lib/css/scale.css?v7"/>
-<script data-cfasync="false" src='/lib/js/jquery.js'></script>
-<script data-cfasync="false" src='/lib/js/dark.js?v8'></script>
-<script data-cfasync="false" src='/lib/js/main.js'></script>
-<script data-cfasync="false" src='/lib/js/jscookie.js'></script>
-<script data-cfasync="false" src='/lib/js/particles.js'></script>
-<script data-cfasync="false" src='/lib/js/particles-sel.js'></script>
-<noscript>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="../node_modules/flyonui/flyonui.js"></script>
+<link href="../haku.css" rel="stylesheet">
+<link href="../public/styles.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="../scr/fav.png">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded&display=swap" rel="stylesheet">
 <style>
-.fade-up-onstart {
-	display:inherit;
-}
-.fade-in-onload {
-	display:inherit;
-}
-.landing-con-container {
-	top:50%;
-	margin-top:-139px;
-}
-.toggle-navsidebar {
-	background:none;
-	width:auto;
-}
-.sidebar-con-anim {
-	width:300px;
-}
+    body {
+        font-family: 'Unbounded', sans-serif;
+    }
 </style>
-</noscript>
-<script data-cfasync="false" src='/lib/js/carousel.js?v=1'></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "ASTRUM",
-  "url": "https://www.astrums.pro",
-  "logo": "https://www.astrums.pro/favicon.ico",
-  "sameAs": [
-    "https://vk.com/astrum_mc",
-    "https://youtube.com/@Austral_",
-    "https://dsc.gg/astrums"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+7-900-000-0000",
-    "contactType": "customer support",
-    "areaServed": "RU",
-    "availableLanguage": ["Russian", "English"]
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Москва",
-    "addressCountry": "RU"
+<link rel="icon" type="image/png" href="../fav.png">
+<html lang="ru" data-theme="haku">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Приватный ванильный сервер Minecraft. Присоединяйтесь к нашему активному сообществу и наслаждайтесь игрой на высокопроизводительном сервере с стабильным TPS.">
+    <meta name="keywords"
+        content="Minecraft сервер, приватный сервер, ванильный сервер, Minecraft, сервер, игровой сервер, онлайн игра, Minecraft сообщество">
+    <meta name="author" content="HAKU">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ванильный сервер Minecraft - ХАКУ</title>
+</head>
+
+<body>
+    <style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
   }
-}
+
+  .navbar.scrolled {
+    background-color: #0D0D0D; /* Цвет фона при прокрутке */
+  }
+
+  .navbar .menu a,
+  .navbar .dropdown-item {
+    color: white; /* Цвет текста кнопок */
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Прокрутка вниз
+        navbar.classList.add('scrolled');
+      } else {
+        // Прокрутка вверх
+        if (scrollTop === 0) {
+          navbar.classList.remove('scrolled');
+        }
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Для IE
+    });
+  });
 </script>
 
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MHJSCJJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<img src="/img/graphics/landing/hero-main.png" width="1" height="1" alt="Логотип сервера Astrum - Аструм" loading="lazy"/>
-<div class="theme-btn-close toggle-theme">
+
+
+<nav class="navbar rounded-box flex w-full items-center justify-between gap-2">
+  <div class="navbar-start max-md:w-1/4">
+    <a class="link text-base-content/90 link-neutral text-xl font-semibold no-underline" href="https://haku.su">
+    <svg width="110" height="29" viewBox="0 0 110 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.4947 0C14.6756 3.22058 17.8503 6.45078 21.0188 9.6906C19.6498 11.095 18.2735 12.4908 16.8901 13.8779C13.7154 10.6716 10.5563 7.44941 7.41289 4.21122C8.77447 2.80649 10.1351 1.40272 11.4947 0Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.2092 7.56105C24.2586 7.55392 24.3055 7.56186 24.35 7.58498C25.7106 8.97277 27.0712 10.3606 28.4317 11.7483C25.2349 14.9613 22.0523 18.1915 18.8841 21.4389C17.5072 20.0425 16.1388 18.6388 14.7789 17.2277C17.9233 14.0045 21.0667 10.7823 24.2092 7.56105Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.47725 7.56106C10.8652 8.90487 12.2336 10.2767 13.5825 11.6766C13.6138 11.7244 13.6138 11.7723 13.5825 11.8201C10.4384 15.035 7.28716 18.2413 4.1287 21.4389C2.74531 20.0518 1.36904 18.6561 0 17.2517C3.16854 14.0278 6.32761 10.7976 9.47725 7.56106Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.4947 15.0743C14.6756 18.2948 17.8503 21.525 21.0188 24.7649C19.6335 26.162 18.265 27.5737 16.9136 29C13.7383 25.7691 10.5714 22.531 7.41289 19.2855C8.77447 17.8807 10.1351 16.477 11.4947 15.0743Z" fill="white"/>
+<path d="M49.5379 15.4533V12.5131L57.9568 23.0837H52.123L46.5638 15.7566H48.8973L43.3153 23.0837H37.5502L46.0148 12.5364V15.4299L38.0535 5.58273H43.9787L49.0117 12.2098H46.6782L51.6426 5.58273H57.4763L49.5379 15.4533Z" fill="white"/>
+<path d="M69.4531 23.0837L68.8583 18.2767L69.476 16.4333L68.8583 14.5899L69.4531 9.75962H74.3031L73.4796 16.41L74.3031 23.0837H69.4531ZM70.5513 16.4333C70.3377 17.8334 69.9107 19.0623 69.2701 20.1202C68.6448 21.178 67.8441 22.0025 66.868 22.5936C65.9072 23.1692 64.8091 23.457 63.5737 23.457C62.2925 23.457 61.1639 23.1692 60.1878 22.5936C59.227 22.0025 58.472 21.178 57.923 20.1202C57.3739 19.0468 57.0994 17.8178 57.0994 16.4333C57.0994 15.0177 57.3739 13.7809 57.923 12.7231C58.472 11.6653 59.227 10.8408 60.1878 10.2497C61.1639 9.65851 62.2925 9.36294 63.5737 9.36294C64.8091 9.36294 65.9072 9.65851 66.868 10.2497C67.8441 10.8252 68.6524 11.6419 69.293 12.6998C69.9336 13.7421 70.353 14.9866 70.5513 16.4333ZM61.835 16.4333C61.835 17.0867 61.9646 17.67 62.2239 18.1834C62.4984 18.6968 62.8721 19.1012 63.3449 19.3968C63.8177 19.6768 64.3591 19.8168 64.9692 19.8168C65.6098 19.8168 66.2122 19.6768 66.7765 19.3968C67.3408 19.1012 67.8365 18.6968 68.2635 18.1834C68.6906 17.67 69.0109 17.0867 69.2244 16.4333C69.0109 15.7644 68.6906 15.1732 68.2635 14.6599C67.8365 14.1465 67.3408 13.7421 66.7765 13.4465C66.2122 13.1509 65.6098 13.0031 64.9692 13.0031C64.3591 13.0031 63.8177 13.1509 63.3449 13.4465C62.8721 13.7421 62.4984 14.1465 62.2239 14.6599C61.9646 15.1732 61.835 15.7644 61.835 16.4333Z" fill="white"/>
+<path d="M76.5491 23.0837V9.75962H81.2389V19.3735L79.8663 18.8834L87.1413 9.75962H92.0828L80.7127 23.0837H76.5491ZM87.187 23.0837L83.458 16.5733L86.9811 14.0532L92.4488 23.0837H87.187Z" fill="white"/>
+<path d="M97.8293 27.3072C96.8684 27.3072 96.0143 27.1828 95.267 26.9339C94.5197 26.7005 93.7952 26.3349 93.0937 25.8371V22.5236C93.8105 22.9903 94.4815 23.3248 95.1069 23.527C95.7322 23.7293 96.4185 23.8304 97.1658 23.8304C97.7911 23.8304 98.3478 23.6904 98.8359 23.4103C99.3239 23.1303 99.7204 22.617 100.025 21.8703L105.036 9.75962H110L103.732 23.3403C103.289 24.3204 102.748 25.0982 102.107 25.6738C101.482 26.2649 100.803 26.685 100.071 26.9339C99.3392 27.1828 98.5918 27.3072 97.8293 27.3072ZM97.9894 21.8469L92.4302 9.75962H97.5776L102.496 21.8469H97.9894Z" fill="white"/>
+</svg>
+
+
+    </a>
+  </div>
+  <div class="navbar-center max-md:hidden">
+    <ul class="menu menu-horizontal p-0 font-medium">
+      <li><a href="https://wiki.haku.su/">Вики</a></li>
+      <li><a href="/plus">Плюсик+</a></li>
+      <li><a href="https://discord.gg/S6B7zzbz2F">Дискорд</a></li>
+    </ul>
+  </div>
+  <div class="navbar-end items-center gap-4">
+    <div class="dropdown relative inline-flex md:hidden rtl:[--placement:bottom-end]">
+      <button id="dropdown-default" type="button" class="dropdown-toggle btn btn-text btn-primary btn-square" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+        <span class="icon-[tabler--menu-2] dropdown-open:hidden size-5"></span>
+        <span class="icon-[tabler--x] dropdown-open:block hidden size-5"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-default">
+        <li><a class="dropdown-item" href="https://wiki.haku.su/">Вики</a></li>
+        <li><a class="dropdown-item" href="/plus">Архив</a></li>
+        <li><a class="dropdown-item" href="https://discord.gg/S6B7zzbz2F">Дискорд</a></li>
+      </ul>
+    </div>
+    <a class="btn max-md:btn-square btn-primary bg-black" href="https://haku.su/panel">
+      <span class="max-md:hidden">Войти</span>
+      <span class="icon-[tabler--arrow-right]"></span>
+    </a>
+  </div>
+</nav>
+
+
+    <div class="relative h-screen w-full motion-preset-focus  ">
+        <video class="absolute top-0 left-0 w-full h-full object-cover" autoplay loop muted playsinline>
+            <source src="inx.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-white">
+            <h1 class="text-4xl md:text-4xl font-bold mb-8 text-center motion-preset-shrink">
+                Приватный ванильный сервер по Minecraft
+            </h1>
+
+            <a href="https://haku.su/panel"><button class="btn btn-primary rounded-lg btn-lg">
+                <p>Начать играть</p>
+                <span class="text-sm bg-black py-1 rounded-lg px-2">150₽</span>
+            </button>
+            </a>
+            <p class="mt-2 text-sm bg-red-500 py-2 px-4 rounded-lg invisible">Действует скидка до {date}</p>
+        </div>
+    </div>
+
+    <div class="bg-[#0D0D0D] py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#141414] h-[500px] p-6 rounded-lg shadow-md text-center relative overflow-hidden">
+                    <img src="/public/1.png" alt="Image 1"
+                        class="absolute inset-0 w-full h-full object-cover opacity-100" />
+                    <div class="blurred-circle"></div>
+                    <div class="relative z-20">
+                        <h2 class="text-2xl font-bold mb-4 text-[#06FE9F]">Высокий TPS</h2>
+                        <p class="text-neutral-content">Наш сервер обеспечивает высокую производительность и стабильный
+                            TPS для лучшего игрового опыта.</p>
+                    </div>
+                </div>
+                <div class="bg-[#141414] h-[500px] p-6 rounded-lg shadow-md text-center relative overflow-hidden">
+                    <img src="/public/2.png" alt="Image 2"
+                        class="absolute inset-0 w-full h-full object-cover opacity-100" />
+                    <div class="blurred-circle"></div>
+                    <div class="relative z-20">
+                        <h2 class="text-2xl font-bold mb-4 text-secondary">Активное сообщество</h2>
+                        <p class="text-neutral-content">Присоединяйтесь к нашему активному сообществу игроков и
+                            наслаждайтесь игрой вместе.</p>
+                    </div>
+                </div>
+                <div class="bg-[#141414] h-[500px] p-6 rounded-lg shadow-md text-center relative overflow-hidden">
+                    <img src="/public/3.png" alt="Image 3"
+                        class="absolute inset-0 w-full h-full object-cover opacity-100" />
+                    <div class="blurred-circle"></div>
+                    <div class="relative z-20">
+                        <h2 class="text-2xl font-bold mb-4 text-accent">Место для ваших идей</h2>
+                        <p class="text-neutral-content">Мы всегда открыты для новых идей и предложений от наших игроков.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .blurred-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: rgba(25, 47, 247, 0.36);
+            border-radius: 50%;
+            filter: blur(100px);
+            transform: translate(-50%, -50%);
+            animation: moveCircle 20s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes moveCircle {
+            0% {
+                transform: translate(-50%, -50%) translateX(-100px) translateY(-100px);
+            }
+
+            25% {
+                transform: translate(-50%, -50%) translateX(100px) translateY(-100px);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateX(100px) translateY(100px);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) translateX(-100px) translateY(100px);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) translateX(-100px) translateY(-100px);
+            }
+        }
+    </style>
+
+
+    <div class="bg-[#0D0D0D]">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-8 text-center">Немного о сервере</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="bg-[#141414] h-[200px] p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center">
+                    <h2 class="text-2xl font-bold mb-2 text-yellow-400">633</h2>
+                    <p class="text-neutral-content">Зарегистрировано игроков</p>
+                </div>
+                <div
+                    class="bg-[#141414] h-[200px] p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center">
+                    <h2 class="text-2xl font-bold mb-2 text-blue-300">4 года</h2>
+                    <p class="text-neutral-content">Возраст проекта</p>
+                </div>
+                <div
+                    class="bg-[#141414] h-[200px] p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center">
+                    <h2 class="text-2xl font-bold mb-2 text-accent">30.12.2024</h2>
+                    <p class="text-neutral-content">Последний вайп</p>
+                </div>
+                <div
+                    class="bg-[#141414] h-[200px] p-6 rounded-lg shadow-md text-center flex flex-col justify-center items-center">
+                    <div class="flex items-center mb-2">
+                        <div class="w-4 h-4 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                        <h2 class="text-2xl font-bold text-green-500">Онлайн</h2>
+                    </div>
+                    <p class="text-neutral-content">Статус сервера</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div class="bg-[#0D0D0D] mt-4">
+        <div class="container mx-auto px-4">
+            <div id="image" data-carousel='{ "loadingClasses": "opacity-0" }' class="relative h-[500px]">
+                <div class="carousel">
+                    <div class="carousel-body h-full opacity-0">
+                        <div class="carousel-slide">
+                            <div class="flex h-full justify-center">
+                                <img src="./public/screens/3.png" class="size-full object-cover" alt="game" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="flex h-full justify-center">
+                                <img src="./public/screens/2.png" class="size-full object-cover" alt="game" />
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="flex h-full justify-center">
+                                <img src="./public/screens/4.png" class="size-full object-cover" alt="game" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button type="button" class="carousel-prev">
+                    <span class="size-9.5 bg-base-100 flex items-center justify-center rounded-full shadow">
+                        <span class="icon-[tabler--chevron-left] size-5 cursor-pointer rtl:rotate-180"></span>
+                    </span>
+                    <span class="sr-only">Назад</span>
+                </button>
+                <button type="button" class="carousel-next">
+                    <span class="sr-only">След</span>
+                    <span class="size-9.5 bg-base-100 flex items-center justify-center rounded-full shadow">
+                        <span class="icon-[tabler--chevron-right] size-5 cursor-pointer rtl:rotate-180"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    -->
+
+
+
+                <div class="relative h-60 w-full">
+
+  <div class="relative h-60 w-full">
+  <footer class="footer bg-black absolute -bottom-px start-0 w-full px-6 py-4">
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      <aside class="text-center md:text-left mb-4 md:mb-0">
+        <p>©2024 <a class="link link-hover font-medium" href="https://haku.su">HAKU.SU</a></p>
+      </aside>
+      <nav class="flex flex-col md:flex-row items-start gap-4">
+        <a class="link link-hover" href="https://haku.su/panel/docs/politica.html">Политика конфиденциальности</a>
+        <a class="link link-hover" href="https://haku.su/panel/docs/oferta.html">Договор-Оферта</a>
+        <a class="link link-hover" href="https://t.me/Quinowell">Связь с администрацией</a>
+        <a class="text-blue-400 bg-black hover:bg-blue-400 hover:text-white rounded-lg px-3 py-1" href="https://t.me/CESAR1337">Сайт скрафтил EASENS</a>
+      </nav>
+    </div>
+  </footer>
 </div>
-<div class="menu-btn-backtotop">
 </div>
-<div class='menu-con-container'>
-	<div class="menu-con-outer">
-		<div class="menu-con-inner">
-			<div class="menu-con-logo">
-				<a href='/' title="Главная страница сайта" aria-label="Главная страница сайта">
-				<div class="menu-ico-logo">
-				</div>
-				</a>
-			</div>
-			<div class="mobile-menu-btn-open toggle-mobilemenu">
-			</div>
-			<div class="mobile-menu-btn-darkmode toggle-darkmode">
-			</div>
-			</a>
-			<div class="menu-con-divider">
-			</div>
-			</a>
-			<a href='https://shop.astrums.pro/' target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
-			<div class="menu-btn-select">
-				<span>Покупка доната</span>
-			</div>
-			</a>
-			<a href='https://dsc.gg/astrums' target="_blank" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
-			<div class="menu-btn-select">
-				<span>Discord</span>
-			</div>
-			</a>
-			<a href='https://youtube.com/@Austral_' target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
-			<div class="menu-btn-select">
-				<span>YouTube</span>
-			</div>
-			</a>
-			<a href='https://vk.com/astrum_mc' target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
-			<div class="menu-btn-select">
-				<span>ВКонтакте</span>
-			</div>
-			</a>
-			<a href='https://map.astrums.pro/' target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
-			<div class="menu-btn-select">
-				<span>Онлайн карта</span>
-			</div>
-			</a>
-			</div>
-		</div>
-	</div>
-</div>
-<div class='mobile-menu-con-container popup-mobilemenu' style="display:none;">
-	<div class="menu-con-backdrop-2">
-	</div>
-	<div class='mobile-menu-con-scroll'>
-		<div class="mobile-menu-con-outter">
-			<div class="mobile-menu-con-inner" style="overflow: hidden !important;">
-				<div class='mobile-menu-tx1-group'>
-					<span>Основное</span>
-				</div>
-				<div class='mobile-menu-con-divider'>
-				</div>
-				<a href="/" title="Главная страница сайта" aria-label="Главная страница сайта">
-				<div class='mobile-menu-btn-icon'>
-				</div>
-				<div class='mobile-menu-btn-select'>
-				<span>Главная</span>
-				</div>
-				</a>
-				<div class='mobile-menu-tx1-group'>
-					<span>Ссылки</span>
-				</div>
-				<div class='mobile-menu-con-divider'>
-				</div>
-				<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
-				<div class='mobile-menu-btn-icon'>
-				</div>
-				<div class='mobile-menu-btn-select'>
-					<span>Покупка доната</span>
-				</div>
-				</a>
-				<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
-				<div class='mobile-menu-btn-icon'>
-				</div>
-				<div class='mobile-menu-btn-select'>
-					<span>Онлайн карта</span>
-				</div>
-				</a>
-            			<a href='https://youtube.com/@Austral_' target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
-           			<div class="menu-btn-select">
-                			<span>YouTube</span>
-            			</div>
-            			</a>
-				<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
-				<div class='mobile-menu-btn-icon'>
-				</div>
-				<div class='mobile-menu-btn-select'>
-					<span>Discord</span>
-				</div>
-				</a>
-				<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
-				<div class='mobile-menu-btn-icon'>
-				</div>
-				<div class='mobile-menu-btn-select'>
-					<span>ВКонтакте</span>
-				</div>
-				</a>
-				<div class='mobile-menu-btn-spacer'>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div><script>
-</script>
-<div class="page-con-content landing-con-override">
-	<div class="wavebar-con-container-master">
-		<div class="wavebar-con-wrap">
-			<div class="wavebar-svg-object">
-			</div>
-			<div class="wavebar-svg-object">
-			</div>
-		</div>
-	</div>
-	<div class='landing-ico-scrolldown'>
-	</div>
-	<div class="landing-con-main">
-		<div id="object-particles">
-		</div>
-		<div class="content-con-backdrop darkmode-header">
-		</div>
-		<div class="content-con-outside">
-			<div class="content-con-inside">
-				<div class='landing-con-left content-expand '>
-					<div class="landing-con-container scale-content-txt-1 fade-in-onload">
-						<div class='landing-ico-logo'>
-						</div>
-						<div class='landing-tx1-heading pulsate'>
-							<h1>ASTRUM - Ванильный Майнкрафт сервер!<br>1.20 - 1.21.x</h1>
-						</div>
-						<div class='landing-tx2-heading'>
-							<p>
-								 Играй на ASTRUM - приватном сервере Minecraft 1.21 с ванильным выживанием, защитой от гриферов, RP-элементами и бесплатной проходкой!
-							</p>
-							<div class='landing-btn-container'>
-										<div class="build-ico-os">
-									</div>
-									</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class='landing-con-right content-remove '>
-					<div class='landing-img-hero' style="background: url(/img/graphics/landing/hero-main.png) no-repeat center; background-size: contain;">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="landing-con-discord darkmode-discord">
-		<div class="discord-left-logo">
-			<img alt="Discord Left Banner" src="/img/graphics/svg/discord-left.svg" loading="lazy" style="width: 100%; height: 100%;">
-		</div>
-		<div class="discord-center-logo">
-			<img alt="Discord Logo" src="/img/graphics/svg/discord-center.svg" loading="lazy" style="width: 100%; height: 100%;">
-		</div>
-		<div class="discord-right-logo">
-			<img alt="Discord Right Banner" src="/img/graphics/svg/discord-right.svg" loading="lazy" style="width: 100%; height: 100%;">
-		</div>
-		<div class="content-con-outside">
-			<div class="content-con-inside">
-				<div class="discord-con-container">
-					<div class="discord-con-logo">
-						<div class="discord-img-logo">
-						</div>
-					</div>
-					<div class="discord-con-mantra">
-						<div class="discord-wrp-mantra scale-content-txt-1">
-							<div class="discord-tx1-mantra darkmode-txt">
-								<h2>Подать заявку!</h2>
-								<div class="landing-con-divider">
-								</div>
-							</div>
-							<div class="discord-tx2-mantra darkmode-txt">
-								<p>
-									 Подайте заявку в нашем Discord сервере! <br> Для игры на сервере вы должны будете привязать свой аккаунт к Дискорду, так что вступление обязательно!
-								</p>
-							</div>
-							<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
-							<div class="discord-btn-button">
-								<div class="discord-ico-button">
-								</div>
-								<div class="discord-tx1-button">
-									<span>Присоединиться</span>
-								</div>
-							</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<svg class="discord-con-animate" preserveaspectratio="none" width="1920" height="100%" viewbox="0 0 1920 330">
-		<path class="discord-svg-animate" fill="#fff" fill-opacity="0.1" d="M140.881198,194.260295 C257.600568,129.32862 342.939626,119.84993 418.009939,203.154617 C493.080251,286.459305 545.728689,70.9046172 636.439626,63.9593047 C727.150564,57.0139922 768.99822,139.670242 858.802907,119.431961 C948.607595,99.1936797 1071.91228,-32.9977266 1243.91228,7.75227342 C1415.91228,48.5022734 1404.10369,208.584305 1508.27166,178.709305 C1612.43963,148.834305 1633.73291,79.913472 1711.63588,98.8569055 C1776.28676,114.577866 1819.96778,221.391836 1889.37253,185.808108 C2017.32661,120.206212 2004.01952,336.769569 2004.01952,336.769569 L271.635881,337 L-149.063338,337 C-149.063338,337 -245.850307,175.637635 -58.0633382,228.867188 C33.8652851,254.92501 64.1722713,236.933925 140.881198,194.260295 Z"></path>
-		</svg>
-	</div>
-	<div class="landing-con-patreon darkmode-feature">
-		<div class="patreon-img-backdrop">
-		</div>
-		<div class="content-con-outside">
-			<div class="content-con-inside">
-				<div class="patreon-con-container">
-					<div class="patreon-con-logo">
-						<div class="patreon-img-logo">
-						</div>
-					</div>
-					<div class="patreon-con-mantra">
-						<div class="patreon-wrp-mantra scale-content-txt-1 ">
-							<div class="patreon-tx1-mantra">
-								<h3>Купить проходку</h3>
-								<div class="landing-con-divider" style="background: hwb(212 11% 10%);">
-								</div>
-							</div>
-							<div class="patreon-tx2-mantra darkmode-txt">
-								<p>
-									 Чтобы не ждать рассмотрения заявки до 2-х суток, вы можете просто купить проходку и поддержать проект!
-								</p>
-							</div>
-							<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
-							<div class="patreon-btn-button">
-								<div class="patreon-ico-button">
-								</div>
-								<div class="patreon-tx1-button">
-									<span>Перейти</span>
-								</div>
-							</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                
+                
 </body>
-<footer>
-<div class="footer-con-container">
-	<div class="footer-con-overlay darkmode-header">
-		<div class="wavebar-con-container">
-			<div class="wavebar-con-wrap">
-				<div class="wavebar-svg-object">
-				</div>
-				<div class="wavebar-svg-object">
-				</div>
-			</div>
-		</div>
-		<div class="footer-con-header">
-			<div class="footer-con-outer">
-				<div class="footer-con-inner">
-					<div class="footer-ico-logo darkmode-footer-logo">
-					</div>
-					<table class="footer-table-out">
-					<tr>
-						<td>
-							<div class="footer-table-in">
-								<div class="footer-con-bound">
-									<div class="footer-tx1-bound">
-										<span>Сервер</span>
-									</div>
-									<div class="footer-tx2-bound">
-										<a href="https://shop.astrums.pro/" target="_blank" title="Перейти на сайт для покупки доната" aria-label="Покупка доната для поддержки проекта">
-										<span>Донат</span>
-										</a>
-									</div>
-									<div class="footer-tx2-bound">
-										<a href="https://map.astrums.pro/" target="_blank" title="Открыть онлайн карту Astrum" aria-label="Онлайн карта сервера Astrum">
-										<span>Онлайн карта</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="footer-table-in">
-								<div class="footer-con-bound">
-									<div class="footer-tx1-bound">
-										<span>Соц. сети</span>
-									</div>
-									<div class="footer-tx2-bound">
-										<a href="https://vk.com/astrum_mc" target="_blank" title="Перейти в ВКонтакте Astrum" aria-label="ВКонтакте сервера Astrum">
-										<span>ВКонтакте</span>
-										</a>
-									</div>
-									<div class="footer-tx2-bound">
-										<a href="https://dsc.gg/astrums" target="_blank" title="Зайти на наш Discord Astrum" aria-label="Discord сервер Astrum">
-										<span>Discord</span>
-										</a>
-									</div>
-									<div class="footer-tx2-bound">
-										<a href="https://www.youtube.com/@Austral_" target="_blank" title="Перейти на YouTube канал владельца Astrum" aria-label="Ютуб владельца Astrum">
-										<span>YouTube</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="footer-con-sources">
-									</div>
-								</div>
-							</div>
-						</td>
-	</div>
-</div>
-</footer>
+
 </html>
