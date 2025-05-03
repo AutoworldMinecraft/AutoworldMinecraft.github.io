@@ -1,0 +1,420 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Autoworld - Приватный сервер Minecraft 1.21.4</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным комьюнити, регулярными ивентами и бесплатной проходкой. Присоединяйся!">
+    <meta name="keywords" content="Minecraft, Autoworld, приватный сервер, ванильный сервер, Minecraft 1.21.4, игровое сообщество">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Autoworld - Приватный сервер Minecraft">
+    <meta property="og:description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным комьюнити и бесплатной проходкой.">
+    <meta property="og:image" content="https://autoworldminecraft.github.io/images/favicon.ico">
+    <meta property="og:url" content="https://autoworldminecraft.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Autoworld">
+    <meta name="theme-color" content="#6B48FF">
+    <link rel="icon" href="https://autoworldminecraft.github.io/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #1A0933 0%, #2A1B5A 50%, #6B48FF 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Starry background effect */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #6B48FF;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6B48FF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            background: radial-gradient(circle, rgba(107, 72, 255, 0.2), transparent);
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #6B48FF, #FFFFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: #6B48FF;
+            color: #FFFFFF;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(107, 72, 255, 0.4);
+        }
+
+        .button:hover {
+            background: #8B68FF;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(107, 72, 255, 0.6);
+        }
+
+        .about, .community, .donate {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .about h2, .community h2, .donate h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #6B48FF;
+            text-align: center;
+        }
+
+        .about p, .donate p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .community .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: rgba(26, 9, 51, 0.9);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #6B48FF;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .about h2, .community h2, .donate h2 {
+                font-size: 36px;
+            }
+
+            .about p, .donate p {
+                font-size: 18px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .button {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .about h2, .community h2, .donate h2 {
+                font-size: 28px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Autoworld</div>
+            <div class="nav-links">
+                <a href="#hero">Главная</a>
+                <a href="#about">О сервере</a>
+                <a href="#community">Комьюнити</a>
+                <a href="#donate">Поддержать</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Autoworld Minecraft</h1>
+            <p>Присоединяйся к приватному серверу Minecraft 1.21.4 с ванильным выживанием, дружным комьюнити и бесплатной проходкой!</p>
+            <p style="font-weight: bold;">IP: autoworld.20tps.ru</p>
+            <a href="https://t.me/AW_FB_bot" target="_blank" class="button">Подать заявку</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О сервере</h2>
+            <p>Autoworld — это приватный сервер Minecraft 1.21.4, где вы можете наслаждаться чистым ванильным выживанием. У нас нет гриферства и воровства, а игроки всегда готовы прийти на помощь. Регулярные ивенты и дружелюбное сообщество ждут вас!</p>
+        </div>
+    </section>
+
+    <section id="community" class="community">
+        <div class="container">
+            <h2>Наше комьюнити</h2>
+            <div class="links">
+                <a href="https://t.me/autoworldspacetg" target="_blank" class="button">Telegram-канал</a>
+                <a href="https://t.me/autoworld_space_chat" target="_blank" class="button">Telegram-чат</a>
+                <a href="https://discord.com/invite/rg54WQpPZr" target="_blank" class="button">Discord</a>
+                <a href="https://www.youtube.com/@autoworldspace" target="_blank" class="button">YouTube</a>
+                <a href="https://www.tiktok.com/@autoworld.20tps.ru" target="_blank" class="button">TikTok</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="donate">
+        <div class="container">
+            <h2>Поддержать проект</h2>
+            <p>Поддержите наш сервер, чтобы поблагодарить админов за их труд! За любую сумму вы получите цветной ник в игре.</p>
+            <a href="https://new.donatepay.ru/@EvgeNus" target="_blank" class="button">Поддержать</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Autoworld. Все права защищены.</p>
+        <p>
+            <a href="https://t.me/AW_FB_bot" target="_blank">Получить проходку</a> |
+            <a href="https://t.me/autoworldspacetg" target="_blank">Telegram</a> |
+            <a href="https://discord.com/invite/rg54WQpPZr" target="_blank">Discord</a>
+        </p>
+    </footer>
+
+    <script>
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Generate stars for background
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            starsContainer.appendChild(star);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'939e51b0ab3fbfa9',t:'MTc0NjI2MDIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'939ef153190ebd0c',t:'MTc0NjI2Njc1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
