@@ -37,61 +37,23 @@
         }
         return gk_fileData[filename] || "";
         }
-        </script><script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
         </script><!DOCTYPE html>
 <html lang="ru-RU">
 <head>
     <title>Autoworld - Приватный сервер Minecraft 1.21.4</title>
-    <meta charset="description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным комьюнити, регулярными ивентами и бесплатной проходкой. Присоединение!</p>
-    <meta name="keywords" content="Minecraft, Autoworld, приватный сервер, ванильный сервер, Minecraft 1.21.4, игровое сообщество">
+    <meta charset="UTF-8">
+    <meta name="description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным сообществом, регулярными событиями и бесплатной проходкой. Присоединяйся!">
+    <meta name="keywords" content="Minecraft, Autoworld, Приватный сервер, Ванильный сервер, Minecraft 1.21.4, Игровое сообщество">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Autoworld - Приватный сервер Minecraft">
-    <meta property="og:description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным комьюнити и бесплатной проходкой.">
+    <meta property="og:description" content="Autoworld - приватный сервер Minecraft 1.21.4 с ванильным выживанием, дружным сообществом и бесплатной проходкой.">
     <meta property="og:image" content="https://autoworldminecraft.github.io/images/favicon.ico">
     <meta property="og:url" content="https://autoworldminecraft.github.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Autoworld">
     <meta name="theme-color" content="#6B48FF">
     <link rel="icon" href="https://autoworldminecraft.github.io/images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -503,7 +465,7 @@
                 <a href="https://discord.com/invite/rg54WQpPZr" target="_blank" class="button">Discord</a>
                 <a href="https://www.youtube.com/@autoworldspace" target="_blank" class="button">YouTube</a>
                 <a href="https://www.tiktok.com/@autoworld.20tps.ru" target="_blank" class="button">TikTok</a>
-                <a href="mailto:autoworld.20tps@gmail.com" class="button">Почта</a>
+                <button onclick="copyEmail()" class="button">Копировать Email</button>
             </div>
         </div>
     </section>
@@ -571,6 +533,41 @@
                 }
             }
             return gk_fileData[filename] || "";
+        }
+
+        function copyEmail() {
+            const email = "autoworld.20tps@gmail.com";
+
+            // Try fallback method first to avoid Clipboard API issues
+            try {
+                const tempInput = document.createElement("textarea");
+                tempInput.style.position = "fixed";
+                tempInput.style.opacity = "0";
+                tempInput.value = email;
+                document.body.appendChild(tempInput);
+                tempInput.focus();
+                tempInput.select();
+                const successful = document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                if (successful) {
+                    alert("Email скопирован: " + email);
+                    return;
+                }
+            } catch (err) {
+                console.error("Ошибка при копировании через execCommand: ", err);
+            }
+
+            // Try Clipboard API as a secondary option
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(() => {
+                    alert("Email скопирован: " + email);
+                }).catch(err => {
+                    console.error("Ошибка при копировании через Clipboard API: ", err);
+                    alert("Не удалось скопировать email. Пожалуйста, скопируйте вручную: " + email);
+                });
+            } else {
+                alert("Не удалось скопировать email. Пожалуйста, скопируйте вручную: " + email);
+            }
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
