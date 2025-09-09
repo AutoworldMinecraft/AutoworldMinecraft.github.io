@@ -62,14 +62,14 @@
             scroll-behavior: smooth;
         }
 
-body {
-    font-family: 'Rotonda', sans-serif;
-    color: #FFF3E0;
-    background: #3C2F2F;
-    overflow-x: hidden;
-    position: relative;
-    line-height: 1.7;
-}
+        body {
+            font-family: 'Rotonda', sans-serif;
+            color: #FFF3E0;
+            background: #3C2F2F;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.7;
+        }
 
         /* Fox-themed background elements */
         .fox-tails {
@@ -579,6 +579,7 @@ body {
             transform-style: preserve-3d;
             border: none;
             cursor: pointer;
+            margin-top: 1rem; /* Отступ от кнопок управления */
         }
 
         .game-controls .button:hover {
@@ -599,7 +600,7 @@ body {
             grid-template-columns: repeat(3, 1fr);
             gap: 0.5rem;
             max-width: 240px;
-            margin: 1rem auto;
+            margin: 1rem auto 1rem auto; /* Отступ сверху и снизу */
         }
 
         .touch-controls button {
@@ -685,6 +686,7 @@ body {
             transform-style: preserve-3d;
             border: none;
             cursor: pointer;
+            margin-top: 1rem; /* Отступ от кнопок управления */
         }
 
         .tetris-controls .button:hover {
@@ -705,7 +707,7 @@ body {
             grid-template-columns: repeat(3, 1fr);
             gap: 0.5rem;
             max-width: 200px;
-            margin: 1rem auto;
+            margin: 1rem auto 1rem auto; /* Отступ сверху и снизу */
         }
 
         .tetris-touch-controls button {
@@ -814,7 +816,7 @@ body {
 
             .game-controls .button,
             .tetris-controls .button {
-                margin-bottom: 1rem;
+                margin-top: 1rem; /* Увеличен отступ для кнопки "Начать игру" */
             }
 
             .donate-content {
@@ -972,7 +974,6 @@ body {
                 <div class="game-score" id="score">Счет: 0</div>
                 <canvas id="gameCanvas" class="game-canvas"></canvas>
                 <div class="game-controls">
-                    <button onclick="startGame()" class="button">Начать игру</button>
                     <div class="touch-controls" id="snakeTouchControls">
                         <div class="empty"></div>
                         <button id="snakeUp">↑</button>
@@ -984,6 +985,7 @@ body {
                         <button id="snakeDown">↓</div>
                         <div class="empty"></div>
                     </div>
+                    <button onclick="startGame()" class="button">Начать игру</button>
                 </div>
             </div>
         </div>
@@ -997,7 +999,6 @@ body {
                 <div class="tetris-score" id="tetrisScore">Счет: 0</div>
                 <canvas id="tetrisCanvas" class="tetris-canvas"></canvas>
                 <div class="tetris-controls">
-                    <button onclick="startTetris()" class="button">Начать игру</button>
                     <div class="tetris-touch-controls" id="tetrisTouchControls">
                         <button id="tetrisLeft">←</button>
                         <button id="tetrisRotate">↻</button>
@@ -1006,6 +1007,7 @@ body {
                         <button id="tetrisDown">↓</button>
                         <button id="tetrisDrop">⇓</button>
                     </div>
+                    <button onclick="startTetris()" class="button">Начать игру</button>
                 </div>
             </div>
         </div>
