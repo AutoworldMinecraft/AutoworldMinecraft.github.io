@@ -566,20 +566,26 @@
             text-align: center;
         }
 
-        .game-controls .button {
-            background: #FF6200;
-            color: #3C2F2F;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 98, 0, 0.3);
-            transform-style: preserve-3d;
-            border: none;
-            cursor: pointer;
-            margin-top: 1rem; /* Отступ от кнопок управления */
+.game-controls .button {
+    background: #FF6200;
+    color: #3C2F2F;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 98, 0, 0.3);
+    transform-style: preserve-3d;
+    border: none;
+    cursor: pointer;
+    display: inline-block; /* Убедитесь, что кнопка отображается как блок */
+}
+
+.game-controls .button:hover {
+    transform: translateY(-3px) rotateX(10deg);
+    box-shadow: 0 12px 30px rgba(255, 98, 0, 0.4);
+}
         }
 
         .game-controls .button:hover {
