@@ -1,0 +1,615 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Галерея - Autoworld Minecraft</title>
+    <meta charset="utf-8">
+    <meta name="description" content="История сервера Autoworld Minecraft 1.21.4. Просмотрите галерею фотографий и воспоминаний о нашем приватном сервере.">
+    <meta name="keywords" content="Minecraft, Autoworld, галерея, история сервера, приватный сервер">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Галерея - Autoworld Minecraft">
+    <meta property="og:description" content="История сервера Autoworld Minecraft 1.21.4. Просмотрите галерею фотографий и воспоминаний о нашем приватном сервере.">
+    <meta property="og:image" content="https://autoworldminecraft.github.io/images/favicon.ico">
+    <meta property="og:url" content="https://autoworldminecraft.github.io/gallery.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Autoworld">
+    <meta name="theme-color" content="#FF6200">
+    <link rel="icon" href="https://autoworldminecraft.github.io/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #FFF3E0;
+            background: #3C2F2F;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        /* Fox-themed background elements */
+        .fox-tails {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .fox-tail {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #FF6200, #FFF3E0);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: sway 8s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(60, 47, 47, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #FF6200;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #FFF3E0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FF6200;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #FF6200;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: #FFF3E0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #FF6200;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(60, 47, 47, 0.95);
+            padding: 5rem 2rem 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-menu.active {
+            display: block;
+            transform: translateY(0);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .nav-menu ul li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-menu ul li a {
+            color: #FFF3E0;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu ul li a:hover {
+            color: #FF6200;
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(60, 47, 47, 0.8);
+            z-index: 998;
+            cursor: pointer;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 4rem 0;
+        }
+
+        .gallery {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+            background: rgba(60, 47, 47, 0.5);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 98, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        .gallery h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #FF6200;
+        }
+
+        .gallery p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            border-left: 3px solid #FF6200;
+            padding-left: 1rem;
+        }
+
+        .slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 98, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 98, 0, 0.2);
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+        }
+
+        .slider-nav button {
+            background: #FF6200;
+            border: none;
+            color: #3C2F2F;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 98, 0, 0.3);
+        }
+
+        .slider-nav button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 98, 0, 0.4);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 98, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #FF6200;
+            transform: scale(1.2);
+        }
+
+        footer {
+            background: rgba(60, 47, 47, 0.95);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer .container {
+            max-width: 1100px;
+            width: 100%;
+            align-items: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            border-left: 3px solid #FF6200;
+            padding-left: 1rem;
+        }
+
+        footer a {
+            color: #FF6200;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FFF3E0;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                max-width: 100%;
+            }
+
+            .gallery h2 {
+                font-size: 2rem;
+            }
+
+            .gallery p {
+                font-size: 1.1rem;
+            }
+
+            .slider-nav button {
+                font-size: 18px;
+                padding: 8px 12px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .slider-nav {
+                padding: 0 5px;
+            }
+
+            .slider-nav button {
+                font-size: 16px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fox-tails" id="fox-tails"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Autoworld</a>
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Главная</a></li>
+                <li><a href="index.html#about">О сервере</a></li>
+                <li><a href="index.html#community">Комьюнити</a></li>
+                <li><a href="rules.html">Правила</a></li>
+                <li><a href="index.html#donate">Поддержать</a></li>
+                <li><a href="#gallery">История</a></li>
+            </ul>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html#hero">Главная</a></li>
+                    <li><a href="index.html#about">О сервере</a></li>
+                    <li><a href="index.html#community">Комьюнити</a></li>
+                    <li><a href="rules.html">Правила</a></li>
+                    <li><a href="index.html#donate">Поддержать</a></li>
+                    <li><a href="#gallery">История</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>История сервера</h2>
+            <p>Autoworld насчитывает уже более 5-ти лет насыщенной истории. Прочитайте о важнейших событиях, произошедших с сервером за это время!</p>
+            <div class="slider">
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_1.jpeg" alt="Скриншот 1"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_2.jpeg" alt="Скриншот 2"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_3.jpeg" alt="Скриншот 3"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_4.jpeg" alt="Скриншот 4"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_5.jpeg" alt="Скриншот 5"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_6.jpeg" alt="Скриншот 6"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_7.jpeg" alt="Скриншот 7"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_8.jpeg" alt="Скриншот 8"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_9.jpeg" alt="Скриншот 9"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_10.jpeg" alt="Скриншот 10"></div>
+                    <div class="slide"><img src="1_11.jpeg" alt="Скриншот 11"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_12.jpeg" alt="Скриншот 12"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_13.jpeg" alt="Скриншот 13"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_14.jpeg" alt="Скриншот 14"></div>
+                    <div class="slide"><img src="https://autoworldminecraft.github.io/1_15.jpeg" alt="Скриншот 15"></div>
+                </div>
+                <div class="slider-nav">
+                    <button id="prevBtn">&#10094;</button>
+                    <button id="nextBtn">&#10095;</button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Autoworld. Не является официальным продуктом Minecraft. Не одобрено/не связано с Mojang или Microsoft.</p>
+            <div class="links">
+                <a href="https://t.me/AW_FB_bot" target="_blank">Получить проходку</a>
+                <a href="https://t.me/autoworldspacetg" target="_blank">Telegram</a>
+                <a href="https://discord.com/invite/rg54WQpPZr" target="_blank">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fox tails animation
+        const tailsContainer = document.getElementById('fox-tails');
+        for (let i = 0; i < 15; i++) {
+            const tail = document.createElement('div');
+            tail.className = 'fox-tail';
+            tail.style.left = `${Math.random() * 100}vw`;
+            tail.style.top = `${Math.random() * 100}vh`;
+            tail.style.animationDelay = `${Math.random() * 5}s`;
+            tailsContainer.appendChild(tail);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            hamburger.classList.remove('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                hamburger.classList.remove('open');
+            }
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(60, 47, 47, 0.98)';
+            } else {
+                nav.style.background = 'rgba(60, 47, 47, 0.95)';
+            }
+        });
+
+        // Slider functionality
+        const sliderContainer = document.getElementById('sliderContainer');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('sliderDots');
+        let currentIndex = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlider() {
+            sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            updateSlider();
+        }
+
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    </script>
+</body>
+</html>
