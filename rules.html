@@ -1,0 +1,678 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Правила сервера - Autoworld Minecraft</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Правила сервера Autoworld Minecraft 1.21.4. Ознакомьтесь с общими правилами, положениями о чате, торговле, магистралях в Незере и игровыми правилами.">
+    <meta name="keywords" content="Minecraft, Autoworld, правила сервера, приватный сервер, Minecraft 1.21.4">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Правила сервера - Autoworld Minecraft">
+    <meta property="og:description" content="Правила сервера Autoworld Minecraft 1.21.4. Узнайте, как играть на нашем ванильном сервере с дружным комьюнити.">
+    <meta property="og:image" content="https://autoworldminecraft.github.io/images/favicon.ico">
+    <meta property="og:url" content="https://autoworldminecraft.github.io/rules.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Autoworld">
+    <meta name="theme-color" content="#FF6200">
+    <link rel="icon" href="https://autoworldminecraft.github.io/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #FFF3E0;
+            background: #3C2F2F;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .fox-tails {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .fox-tail {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #FF6200, #FFF3E0);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: sway 8s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(60, 47, 47, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #FF6200;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #FFF3E0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FF6200;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #FF6200;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: #FFF3E0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #FF6200;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(60, 47, 47, 0.95);
+            padding: 5rem 2rem 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-menu.active {
+            display: block;
+            transform: translateY(0);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .nav-menu ul li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-menu ul li a {
+            color: #FFF3E0;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu ul li a:hover {
+            color: #FF6200;
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(60, 47, 47, 0.8);
+            z-index: 998;
+            cursor: pointer;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 4rem 0;
+        }
+
+        .rules {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+            background: rgba(60, 47, 47, 0.5);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 98, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        .rules h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #FF6200;
+        }
+
+        .rules p.version {
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #FF6200;
+            background: rgba(255, 98, 0, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .rules h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #FF6200;
+            margin: 30px 0 15px;
+        }
+
+        .rules p, .rules li {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .rules ul, .rules ol {
+            margin: 0 auto 10px;
+            text-align: left;
+            max-width: 90%;
+        }
+
+        .rules li {
+            margin-bottom: 8px;
+        }
+
+        .rule-block {
+            background: rgba(60, 47, 47, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(255, 98, 0, 0.2);
+            transition: all 0.3s ease;
+            max-width: 100%;
+        }
+
+        .rule-block:hover {
+            transform: translateY(-5px) rotateY(10deg);
+            box-shadow: 0 12px 35px rgba(255, 98, 0, 0.3);
+        }
+
+        footer {
+            background: rgba(60, 47, 47, 0.95);
+            padding: 3rem 0;
+            text-align: left;
+        }
+
+        footer .container {
+            max-width: 1100px;
+            width: 100%;
+            align-items: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            border-left: 3px solid #FF6200;
+            padding-left: 1rem;
+        }
+
+        footer a {
+            color: #FF6200;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FFF3E0;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .rules {
+                max-width: 100%;
+            }
+
+            .rules h1 {
+                font-size: 2rem;
+            }
+
+            .rules h2 {
+                font-size: 1.8rem;
+            }
+
+            .rules p, .rules li {
+                font-size: 1rem;
+            }
+
+            .rules ul, .rules ol {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+    </script>
+</head>
+<body>
+    <div class="fox-tails" id="fox-tails"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Autoworld</a>
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Главная</a></li>
+                <li><a href="index.html#about">О сервере</a></li>
+                <li><a href="index.html#community">Комьюнити</a></li>
+                <li><a href="rules.html">Правила</a></li>
+                <li><a href="index.html#donate">Поддержать</a></li>
+                <li><a href="gallery.html">История</a></li>
+            </ul>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html#hero">Главная</a></li>
+                    <li><a href="index.html#about">О сервере</a></li>
+                    <li><a href="index.html#community">Комьюнити</a></li>
+                    <li><a href="rules.html">Правила</a></li>
+                    <li><a href="index.html#donate">Поддержать</a></li>
+                    <li><a href="gallery.html">История</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="rules" class="rules">
+        <div class="container">
+            <h1>Правила сервера Autoworld</h1>
+            <p class="version">Версия 7.0 от 08.07.2025</p>
+
+            <div class="rule-block">
+                <h2>Общие правила и соглашение пользования сервера</h2>
+                <ol>
+                    <li>Регистрируя аккаунт на нашем проекте, Вы автоматически подтверждаете свое согласие с нижеизложенными правилами игры. В случае несогласия с ними, администрация имеет право в любой момент ограничить Ваш доступ к игре.</li>
+                    <li>Незнание правил не освобождает Вас от ответственности.</li>
+                    <li>Сервер обладает только одним веб-сайтом - <a href="https://autoworldminecraft.github.io/" target="_blank">https://autoworldminecraft.github.io/</a>.</li>
+                    <li>Администратор имеет право заблокировать Ваш аккаунт не по правилам, если посчитает это нужным, однако блокировка должна руководствоваться здравым смыслом и не являться плодом личной ненависти/неприязни.</li>
+                    <li>Каждый игрок имеет право на оспаривание того или иного выданного наказания либо подачи жалобы на того или иного индивида, пользуясь прикреплёнными на сайте средствами обратной связи (<a href="https://autoworldminecraft.github.io/" target="_blank">пункт 1.3</a>).</li>
+                    <li>Все конфликты и разногласия между игроками должны решаться мирным путём через обращение к администрации или Парламенту. Самосуд запрещён и наказуем в соответствии с нижеизложенными правилами за то или иное нарушение.</li>
+                    <li>Администрация имеет право аннулировать статистику у всех игроков сервера (например, достижения), если того потребуют те или иные обстоятельства (баги, ошибки и др.).</li>
+                    <li>Администрация имеет право ужесточить наказание, в случае частого нарушения.</li>
+                    <li>Запрещено использование любых форм оскорбительной, дискриминационной и ненавистнической речи по отношению к игрокам на основе расы, национальности, пола, религиозных убеждений.
+                        <ol>
+                            <li>Обсуждение политических и религиозных вопросов запрещено.</li>
+                        </ol>
+                    </li>
+                    <li>Администрация оставляет за собой право вносить изменения в правила без предварительного уведомления. Все изменения вступают в силу с момента их публикации.</li>
+                </ol>
+            </div>
+
+            <div class="rule-block">
+                <h2>Правила игры</h2>
+                <p>Запрещается:</p>
+                <ol>
+                    <li>Нахождение на базе игрока, если попросили уйти | предупреждение, кик, бан (1 - 2 часа).
+                        <ol>
+                            <li>Создание сооружений вблизи базы другого игрока (менее 300 блоков) без его разрешения | предупреждение, бан (1 - 3 дня), снос либо перенос постройки.</li>
+                        </ol>
+                    </li>
+                    <li>Гриферство | предупреждение / бан (перманент).
+                        <ol>
+                            <li>Гриферство с другого аккаунта | бан основного аккаунта (перманент).</li>
+                        </ol>
+                    </li>
+                    <li>Воровство | предупреждение, бан (7 дней - перманент).</li>
+                    <li>Убийство любых мобов других игроков, находящихся на их территории, исключением являются естественно заспавненные в вашем присутствии монстры | предупреждение, бан (2 дня - 30 дней).</li>
+                    <li>Использование чужих ферм (кроме общественных) без согласия игрока или таблички, написанной игроком, в которой разрешается посещение фермы | предупреждение, бан (до 7 дней).</li>
+                    <li>Порча игрового мира – любые хаотичные лавокасты, масса хаотично установленных блоков, выкапывание ям большой глубины, столбы, порубленные деревья, постройки, унижающие человеческое достоинство, разжигающие межнациональную рознь, а также оскорбляющие других игроков/администрацию | предупреждение, снос постройки, бан (до 10 дней).
+                        <ol>
+                            <li>Присваивание больших участков земли без облагораживания минимум 50% от них | предупреждение, уменьшение границ базы, бан (3 дня - 1 месяц).</li>
+                        </ol>
+                    </li>
+                    <li>Убийство игрока | бан (4 дня - перманент).
+                        <ol>
+                            <li>Присваивание лута умершего игрока себе (в случае нахождения такового, поставить сундук на месте находки и сложить туда ресурсы) | бан (до 15 дней).</li>
+                        </ol>
+                    </li>
+                    <li>Подстрекательство игроков на нарушение правил | бан (5 дней - перманент).</li>
+                    <li>Использование багов, вызванных особенностями клиента или проблемами с серверной стороны | бан (месяц - перманент).</li>
+                    <li>Читерство или использование ПО, в том числе моды, ресурспаки на Xray, макросы, автокликеры, подсказки для крафта (JEI и аналоги) | бан (15 дней - перманент).</li>
+                    <li>Взлом аккаунта | бан (перманент).</li>
+                    <li>Передача аккаунта в другие руки | бан переданного аккаунта (перманент).</li>
+                    <li>Использование твинков | предупреждение, бан твинка, затем основного аккаунта (перманент).</li>
+                    <li>Издевательства над игроками | предупреждение, бан (до 5 дней).</li>
+                    <li>Аморальное поведение | предупреждение, бан (0.5 дня - перманент).</li>
+                    <li>Создание помех работе сервера (лаг машины, сверхбольшие фермы) | предупреждение, бан (перманент).</li>
+                    <li>Обман администрации | бан (1 - 30 дней).</li>
+                </ol>
+            </div>
+
+            <div class="rule-block">
+                <h2>Правила пользования магистралями в Незере</h2>
+                <ol>
+                    <li>Запрещается ломать магистраль | предупреждение, бан (2 дня - перманент).</li>
+                    <li>Запрещается ломать порталы на конце путей, а также строить близ них свои | предупреждение, бан (3 дня - перманент).</li>
+                    <li>Запрещено строить ловушки или другие опасные структуры рядом с магистралями | предупреждение, бан (1 день - перманент).</li>
+                </ol>
+            </div>
+
+            <div class="rule-block">
+                <h2>Общие положения касательно торговли</h2>
+                <ol>
+                    <li>Общепринятой валютой сервера является Алмазная Руда (сокращённо - АР).</li>
+                    <li>Любая другая валюта для торговли запрещена | нарушение - бан (5 дней – 1 месяц).</li>
+                    <li>Один АР равняется 5-ти обычным алмазам, согласно установленному администрацией курсу.</li>
+                    <li>Администрация оставляет за собой право контролировать все торговые сделки, проводимые на сервере.</li>
+                    <li>Запрещены любые мошеннические действия, связанные с торговыми сделками между игроками | бан (7 дней – перманент).</li>
+                </ol>
+            </div>
+
+            <div class="rule-block">
+                <h2>Правила пользования чатом</h2>
+                <p>Запрещается:</p>
+                <ol>
+                    <li>Флуд (повторение одного и того же сообщения) | предупреждение, мут (3 - 30 минут).</li>
+                    <li>Введение игрока в заблуждение | предупреждение, бан (до 10 дней).</li>
+                    <li>Попрошайничество | предупреждение, мут (10 - 40 минут).</li>
+                    <li>Использование нецензурной лексики | предупреждение, мут (вплоть до перманентного).</li>
+                    <li>Пропаганда нацизма/фашизма/терроризма/антисемитизма | мут (20 - 50 минут), вплоть до бана (перманент).</li>
+                    <li>Реклама других серверов (упоминать другие сервера разрешается) | бан (до 14 дней).</li>
+                    <li>Угрозы и шантаж | мут (0.5-1 часа), бан (0.5-2 дня).
+                        <ol>
+                            <li>Угрозы в ЛС | предупреждение, бан (1-3 дней).</li>
+                            <li>Публикация личных данных игроков без их согласия | бан (перманент).</li>
+                        </ol>
+                    </li>
+                    <li>Оскорбление | мут/бан (15 - 45 минут).</li>
+                    <li>Упоминание родственников в плохом свете | мут (20 - 50 минут), вплоть до бана (перманент).</li>
+                    <li>Распространение ложной информации о сервере или администрации | предупреждение, бан (до 1 месяца).</li>
+                </ol>
+            </div>
+
+            <div class="rule-block">
+                <h2>Общие положения касательно Парламента и выборов на сервере</h2>
+                <ol>
+                    <li>Парламент состоит из трёх человек, которые избираются путём голосования в Telegram-канале (<a href="https://t.me/autoworldspacetg" target="_blank">@autoworldspacetg</a>) либо в ином месте раз в 1-2 месяца.
+                        <ol>
+                            <li>В случае тех или иных обстоятельств, выборы могут быть отменены по решению администратора, или перенесены на более позднюю дату.</li>
+                            <li>Выборы в Парламент проходят только при наличии 5-ти выдвинутых кандидатов.</li>
+                            <li>Дата выборов назначается администрацией в Telegram-канале.</li>
+                            <li>Выдвижение кандидатов на выборы разрешается за 2 недели до начала голосования.</li>
+                            <li>После выдвижения кандидата, он имеет право отправлять в бота-предложку TG (<a href="https://t.me/AW_FB_bot" target="_blank">@AW_FB_bot</a>) агитационные речи. Они будут публиковаться в Telegram-канале.</li>
+                        </ol>
+                    </li>
+                    <li>Парламент призван решать разногласия в команде администрации и искать компромиссы тогда, когда это необходимо.
+                        <ol>
+                            <li>Также Парламент обязан:
+                                <ul>
+                                    <li>Решать конфликты игроков (словесные перепалки в чате, в т.ч с использованием нецензурной лексики).</li>
+                                    <li>Решать бытовые споры (воровство, гриферство) путём просмотра логов (/co i), тогда, когда администрация не может это сделать.</li>
+                                    <li>Проводить развлекательные мероприятия для игроков с одобрения администрации и/либо под её полным или частичным контролем.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>В случае неисполнения Парламентарием своих обязанностей, администрация оставляет за собой право снять его с должности и назначить другого человека.</li>
+                    <li>Администрация оставляет за собой право временно приостанавливать деятельность Парламента на неопределённый срок.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Autoworld. Не является официальным продуктом Minecraft. Не одобрено/не связано с Mojang или Microsoft.</p>
+            <div class="links">
+                <a href="https://t.me/AW_FB_bot" target="_blank">Получить проходку</a>
+                <a href="https://t.me/autoworldspacetg" target="_blank">Telegram</a>
+                <a href="https://discord.com/invite/rg54WQpPZr" target="_blank">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fox tails animation
+        const tailsContainer = document.getElementById('fox-tails');
+        for (let i = 0; i < 15; i++) {
+            const tail = document.createElement('div');
+            tail.className = 'fox-tail';
+            tail.style.left = `${Math.random() * 100}vw`;
+            tail.style.top = `${Math.random() * 100}vh`;
+            tail.style.animationDelay = `${Math.random() * 5}s`;
+            tailsContainer.appendChild(tail);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            hamburger.classList.remove('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                hamburger.classList.remove('open');
+            }
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(60, 47, 47, 0.98)';
+            } else {
+                nav.style.background = 'rgba(60, 47, 47, 0.95)';
+            }
+        });
+    </script>
